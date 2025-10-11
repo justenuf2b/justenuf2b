@@ -12,9 +12,7 @@
   <meta property="og:image" content="HEADSHOT.jpg" />
   <link rel="preconnect" href="https://assets.calendly.com" />
   <style>
-    :root{
-      --bg:#0b0e14; --card:#131826; --ink:#e7ecf3; --muted:#93a1b3; --brand:#4f8cff; --accent:#7ee787; --ring:rgba(79,140,255,.35)
-    }
+    :root{--bg:#0b0e14;--card:#131826;--ink:#e7ecf3;--muted:#93a1b3;--brand:#4f8cff;--accent:#7ee787;--ring:rgba(79,140,255,.35)}
     *{box-sizing:border-box}
     html,body{height:100%}
     body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b0e14 0%,#0f1320 100%);color:var(--ink)}
@@ -49,58 +47,9 @@
     .calendar{background:#0f1422;border:1px solid #1c2336;border-radius:16px;overflow:hidden}
     .note{font-size:13px;color:var(--muted)}
     .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-	/* === Header layout override === */
-	header {
-	  display: flex;
-	  flex-direction: column;
-	  align-items: flex-start;
-	  gap: 10px;
-	  padding: 12px 0 20px;
-	}
-	
-	.header-top {
-	  display: flex;
-	  align-items: center;
-	  justify-content: flex-start;
-	  gap: 12px;
-	}
-	
-	.header-bottom nav {
-	  display: flex;
-	  gap: 18px;
-	  justify-content: flex-start;
-	  flex-wrap: wrap;
-	  margin-left: 68px; /* lines nav under name */
-	}
-	
-	.brand img {
-	  width: 56px;
-	  height: 56px;
-	  border-radius: 50%;
-	  object-fit: cover;
-	  border: 1px solid #223;
-	}
-	
-	.brand .name {
-	  font-weight: 700;
-	  letter-spacing: .2px;
-	  font-size: 20px;
-	}
-	/* === End header layout override === */
     .tag{display:inline-block;padding:6px 10px;border:1px solid #2b3246;border-radius:999px;color:var(--muted);font-size:12px;margin-right:6px;margin-bottom:6px}
     @media (max-width:920px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
   </style>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Ryan Bahrey",
-    "jobTitle":"Advisor and Program Leader",
-    "url":"https://your-domain.example",
-    "sameAs":["https://www.linkedin.com/in/ryanbahrey"],
-    "description":"Helps teams uncover unseen problems, map options, and deliver outcomes"
-  }
-  </script>
 </head>
 <body>
   <div class="wrap">
@@ -144,24 +93,25 @@
       </div>
     </section>
 
-    <section id="about" class="section two">
-      <div class="panel">
-        <h2>Ryan's Approach</h2>
-        <p>Every organization has challenges hiding in plain sight. inefficiencies, gaps, or missed connections that quietly slow progress. Working together, we uncover what’s really going on, map practical options, and choose the path that fits your goals and team dynamics.</p>
-		<p>Teams succeed when people, process, and technology work in sync. Through clear communication and systems thinking, complex change becomes understandable and easier to sustain.</p>
-		<p>I blend technical depth with hands-on creativity to connect strategy to execution. Experience across IT systems, automation, safety, and operations gives me a grounded view of how things actually work. "Hobbies" include building real systems such as home automation, local cloud infrastruture, and water systems keeps my approach practical and adaptable.</p>
-		<p>Collaboration starts with conversation. If you’re exploring new ideas or need a different perspective on how to make work move, let’s talk.</p>
-        <p class="note">Recent focus areas include Microsoft 365, Azure DevOps, Power BI, Power Platform, and Oracle Cloud. Strong bias for clarity and momentum.</p>
-      </div>
+    <section id="who" class="section two">
       <div class="panel">
         <h2>Who I help</h2>
         <p>Leaders and teams who want clarity, movement, and results. Those who value honest conversation, smart options, and real progress over presentation polish.</p>
         <div class="list" style="margin-top:10px">
           <div class="check"><span class="dot"></span><p>Teams adapting to new technology and needing to make it work in practice</p></div>
-		  <div class="check"><span class="dot"></span><p>Leaders managing complex, cross-functional initiatives that require alignment and traction</p></div>
+          <div class="check"><span class="dot"></span><p>Leaders managing complex, cross-functional initiatives that require alignment and traction</p></div>
           <div class="check"><span class="dot"></span><p>Teams moving from idea to execution who need clear decisions and momentum</p></div>
           <div class="check"><span class="dot"></span><p>Founders and operators who want to turn plans into measurable results</p></div>
         </div>
+      </div>
+
+      <div class="panel">
+        <h2>Ryan's Approach</h2>
+        <p>Every organization has challenges hiding in plain sight. inefficiencies, gaps, or missed connections that quietly slow progress. Working together, we uncover what’s really going on, map practical options, and choose the path that fits your goals and team dynamics.</p>
+        <p>Teams succeed when people, process, and technology work in sync. Through clear communication and systems thinking, complex change becomes understandable and easier to sustain.</p>
+        <p>I blend technical depth with hands-on creativity to connect strategy to execution. Experience across IT systems, automation, safety, and operations gives me a grounded view of how things actually work. "Hobbies" include building real systems such as home automation, local cloud infrastruture, and water systems keeps my approach practical and adaptable.</p>
+        <p>Collaboration starts with conversation. If you’re exploring new ideas or need a different perspective on how to make work move, let’s talk.</p>
+        <p class="note">Recent focus areas include Microsoft 365, Azure DevOps, Power BI, Power Platform, and Oracle Cloud. Strong bias for clarity and momentum.</p>
       </div>
     </section>
 
@@ -184,10 +134,8 @@
       <h2>Book a meeting</h2>
       <p class="note">Pick a time that works. Calendly is embedded below. If you prefer, email <a href="mailto:ryan@justenuf2b.com">ryan@justenuf2b.com</a>.</p>
       <div class="calendar">
-        <!-- Calendly inline widget begin -->
         <div class="calendly-inline-widget" data-url="https://calendly.com/ryan-bahrey01/explore-with-a-new-perspective?utm_source=schedule_from_linkedin" style="min-width:320px;height:1100px"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <!-- Calendly inline widget end -->
       </div>
     </section>
 
