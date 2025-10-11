@@ -1,0 +1,29 @@
+name: Deploy to OCI Object Storage via PAR
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload static files
+        run: |
+          set -e
+          BASE="$OCI_PAR_BASE"
+          # find all files under /site or root. Adjust path as needed
+          FILES=$(git ls-files '*.html' '*.css' '*.js' '*.png' '*.jpg' '*.svg' '*.ico' '*.txt' '*.json')
+          for f in $FILES; do
+            URL="$BASE/${f}"
+            # guess a content type
+            CT=$(file --mime-type -b "$f")
+            curl -sS -X PUT -T "$f" \
+              -H "Content-Type: $CT" \
+              -H "Cache-Control: public, max-age=600" \
+              "$URL"
+            echo "Uploaded $f"
+          done
+        env:
+          OCI_PAR_BASE: ${{ secrets.OCI_PAR_BASE }}
