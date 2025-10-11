@@ -49,6 +49,44 @@
     .calendar{background:#0f1422;border:1px solid #1c2336;border-radius:16px;overflow:hidden}
     .note{font-size:13px;color:var(--muted)}
     .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+	/* === Header layout override === */
+	header {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: flex-start;
+	  gap: 10px;
+	  padding: 12px 0 20px;
+	}
+	
+	.header-top {
+	  display: flex;
+	  align-items: center;
+	  justify-content: flex-start;
+	  gap: 12px;
+	}
+	
+	.header-bottom nav {
+	  display: flex;
+	  gap: 18px;
+	  justify-content: flex-start;
+	  flex-wrap: wrap;
+	  margin-left: 68px; /* lines nav under name */
+	}
+	
+	.brand img {
+	  width: 56px;
+	  height: 56px;
+	  border-radius: 50%;
+	  object-fit: cover;
+	  border: 1px solid #223;
+	}
+	
+	.brand .name {
+	  font-weight: 700;
+	  letter-spacing: .2px;
+	  font-size: 20px;
+	}
+	/* === End header layout override === */
     .tag{display:inline-block;padding:6px 10px;border:1px solid #2b3246;border-radius:999px;color:var(--muted);font-size:12px;margin-right:6px;margin-bottom:6px}
     @media (max-width:920px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
   </style>
