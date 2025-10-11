@@ -9,21 +9,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Upload static files
+      - name: Upload to OCI bucket root
+        env:
+          OCI_PAR_BASE: ${{ secrets.OCI_PAR_BASE }}
         run: |
-          set -e
-          BASE="$OCI_PAR_BASE"
-          # find all files under /site or root. Adjust path as needed
-          FILES=$(git ls-files '*.html' '*.css' '*.js' '*.png' '*.jpg' '*.svg' '*.ico' '*.txt' '*.json')
-          for f in $FILES; do
-            URL="$BASE/${f}"
-            # guess a content type
-            CT=$(file --mime-type -b "$f")
-            curl -sS -X PUT -T "$f" \
+          set -euo pipefail
+          # If your site files are in repo root, keep these as is.
+          # If they live under "site/", set SOURCE_DIR="site" and STRIP_PREFIX="site/"
+          SOURCE_DIR="."
+          STRIP_PREFIX=""
+
+          mapfile -t FILES < <(find "$SOURCE_DIR" -type f \
+            \( -name '*.html' -o -name '*.css' -o -name '*.js' -o -name '*.png' -o -name '*.jpg' -o -name '*.svg' -o -name '*.ico' -o -name '*.txt' -o -name '*.json' \))
+
+          echo "Uploading ${#FILES[@]} files to bucket root"
+          for f in "${FILES[@]}"; do
+            REL="${f#$STRIP_PREFIX}"
+            CT=$(file --mime-type -b "$f" || echo application/octet-stream)
+            URL="${OCI_PAR_BASE}/${REL}"
+            echo "PUT ${REL}"
+            curl -fSs -X PUT -T "$f" \
               -H "Content-Type: $CT" \
               -H "Cache-Control: public, max-age=600" \
               "$URL"
-            echo "Uploaded $f"
           done
-        env:
-          OCI_PAR_BASE: ${{ secrets.OCI_PAR_BASE }}
+          echo "Done."
