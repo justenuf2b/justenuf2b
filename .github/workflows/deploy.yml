@@ -14,23 +14,30 @@ jobs:
           OCI_PAR_BASE: ${{ secrets.OCI_PAR_BASE }}
         run: |
           set -euo pipefail
-          # If your site files are in repo root, keep these as is.
+          # If your site files are in repo root, keep these.
           # If they live under "site/", set SOURCE_DIR="site" and STRIP_PREFIX="site/"
           SOURCE_DIR="."
           STRIP_PREFIX=""
 
-          mapfile -t FILES < <(find "$SOURCE_DIR" -type f \
-            \( -name '*.html' -o -name '*.css' -o -name '*.js' -o -name '*.png' -o -name '*.jpg' -o -name '*.svg' -o -name '*.ico' -o -name '*.txt' -o -name '*.json' \))
+          echo "Finding static files..."
+          FILES=$(find "$SOURCE_DIR" -type f \( \
+            -name '*.html' -o -name '*.css' -o -name '*.js' -o \
+            -name '*.png' -o -name '*.jpg' -o -name '*.svg' -o \
+            -name '*.ico' -o -name '*.txt' -o -name '*.json' \))
 
-          echo "Uploading ${#FILES[@]} files to bucket root"
-          for f in "${FILES[@]}"; do
-            REL="${f#$STRIP_PREFIX}"
+          echo "Uploading files to bucket root..."
+          for f in $FILES; do
+            REL="${f#$STRIP_PREFIX}"   # strip prefix like site/
+            REL="${REL#./}"            # remove leading ./ if present
+            REL="${REL#/}"             # remove leading / if present
+
             CT=$(file --mime-type -b "$f" || echo application/octet-stream)
             URL="${OCI_PAR_BASE}/${REL}"
             echo "PUT ${REL}"
-            curl -fSs -X PUT -T "$f" \
+            curl -fsS -X PUT -T "$f" \
               -H "Content-Type: $CT" \
               -H "Cache-Control: public, max-age=600" \
               "$URL"
           done
-          echo "Done."
+
+          echo "✅ Upload complete."
