@@ -1,38 +1,45 @@
 name: Deploy to OCI Object Storage via PAR
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Upload to OCI bucket root
+        shell: bash
         env:
           OCI_PAR_BASE: ${{ secrets.OCI_PAR_BASE }}
         run: |
           set -euo pipefail
-          # If your site files are in repo root, keep these.
-          # If they live under "site/", set SOURCE_DIR="site" and STRIP_PREFIX="site/"
+
+          # Normalize base. Secret should end with .../b/<bucket>/o (no trailing slash)
+          BASE="${OCI_PAR_BASE%/}"
+
+          # Where files live. If using a folder like site/, set SOURCE_DIR="site" and STRIP_PREFIX="site/"
           SOURCE_DIR="."
           STRIP_PREFIX=""
 
-          echo "Finding static files..."
-          FILES=$(find "$SOURCE_DIR" -type f \( \
-            -name '*.html' -o -name '*.css' -o -name '*.js' -o \
-            -name '*.png' -o -name '*.jpg' -o -name '*.svg' -o \
-            -name '*.ico' -o -name '*.txt' -o -name '*.json' \))
+          # Collect files
+          mapfile -t FILES < <(find "$SOURCE_DIR" -type f \
+            \( -name '*.html' -o -name '*.css' -o -name '*.js' -o \
+               -name '*.png' -o -name '*.jpg' -o -name '*.svg' -o \
+               -name '*.ico' -o -name '*.txt' -o -name '*.json' \))
 
-          echo "Uploading files to bucket root..."
-          for f in $FILES; do
-            REL="${f#$STRIP_PREFIX}"   # strip prefix like site/
-            REL="${REL#./}"            # remove leading ./ if present
-            REL="${REL#/}"             # remove leading / if present
+          echo "Uploading ${#FILES[@]} files..."
+          for f in "${FILES[@]}"; do
+            REL="${f#$STRIP_PREFIX}"
+            REL="${REL#./}"   # drop leading ./ if present
+            REL="${REL#/}"    # drop leading / if present
 
-            CT=$(file --mime-type -b "$f" || echo application/octet-stream)
-            URL="${OCI_PAR_BASE}/${REL}"
+            CT="$(file --mime-type -b "$f" || echo application/octet-stream)"
+            URL="${BASE}/${REL}"
+
             echo "PUT ${REL}"
             curl -fsS -X PUT -T "$f" \
               -H "Content-Type: $CT" \
@@ -40,4 +47,4 @@ jobs:
               "$URL"
           done
 
-          echo "✅ Upload complete."
+          echo "Done."
