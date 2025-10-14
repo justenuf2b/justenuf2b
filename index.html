@@ -19,11 +19,39 @@
     a{color:var(--brand);text-decoration:none}
     a:hover{opacity:.9}
     .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid #223}
-    .brand .name{font-weight:700;letter-spacing:.2px}
-    nav{display:flex;gap:18px}
+    header {
+      display: flex;
+      flex-wrap: wrap;           /* allow nav to wrap to next line */
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1 1 100%;            /* forces full width so nav moves below */
+    }
+    
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid #223;
+    }
+    
+    .brand .name {
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    
+    nav {
+      display: flex;
+      gap: 18px;
+    }
     .cta{padding:10px 16px;border-radius:12px;background:var(--brand);color:white;font-weight:600;border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 18px rgba(79,140,255,.25)}
     .cta.alt{background:transparent;border:1px solid #2b3246}
     .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;margin-top:28px}
