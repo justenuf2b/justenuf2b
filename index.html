@@ -118,7 +118,7 @@
       display: block;
       opacity: 1;
       transform: translateY(0);
-    }
+	}
 
     @media (prefers-reduced-motion: reduce) {
       section[data-route] { transition: none; transform: none; }
@@ -159,22 +159,32 @@
     html { scrollbar-gutter: stable; }
     body { overflow-y: scroll; }
 
-    /* --- Mobile compact + auto-hide header --- */
-    @media (max-width: 768px) {
-      body.scrolled header.site {
-        padding-block: 4px;
-        background: rgba(11, 14, 20, 0.95);
-        backdrop-filter: blur(14px);
-      }
-      body.scrolled .navbar.two-line .brand img { width: 30px; height: 30px; }
-      body.scrolled .navbar.two-line .name { font-size: 14px; }
-      body.scrolled nav a { padding: 6px 10px; }
+	/* --- Mobile compact + auto-hide header --- */
+	@media (max-width: 768px) {
+	  body.scrolled header.site {
+	    padding-block: 4px;
+	    background: rgba(11, 14, 20, 0.95);
+	    backdrop-filter: blur(14px);
+	  }
+	
+	  body.scrolled .navbar.two-line .brand img { width: 30px; height: 30px; }
+	  body.scrolled .navbar.two-line .name { font-size: 14px; }
+	  body.scrolled nav a { padding: 6px 10px; }
+	
+	  /* slide + fade on mobile */
+	  body.header-hide header.site {
+	    transform: translateY(-110%);
+	    opacity: 0; /* or 0.4 if you prefer a partial fade */
+	  }
+	}
 
-      body.header-hide header.site {
-        transform: translateY(-110%);
-	  	opacity: 0.4;
-      }
-    }
+	/* --- Desktop fade-only header --- */
+	@media (min-width: 769px) {
+	  body.header-hide header.site {
+	    transform: none; /* don’t slide on desktop */
+	    opacity: 0;      /* just fade */
+	  }
+	}
 
     @media (prefers-reduced-motion: reduce) {
       header.site { transition: none !important; }
@@ -563,6 +573,7 @@
   </script>
 </body>
 </html>
+
 
 
 
