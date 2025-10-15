@@ -170,6 +170,32 @@
 
 	/* Fallback for older browsers: always show a vertical scrollbar */
 	body { overflow-y: scroll; }
+	/* --- Mobile header compact mode --- */
+	@media (max-width: 768px) {
+	  header.site {
+		transition: all 0.3s ease;
+	  }
+
+	  body.scrolled header.site {
+		padding-block: 4px;
+		background: rgba(11, 14, 20, 0.95);
+		backdrop-filter: blur(14px);
+	  }
+
+	  body.scrolled .navbar.two-line .brand img {
+		width: 30px;
+		height: 30px;
+	  }
+
+	  body.scrolled .navbar.two-line .name {
+		font-size: 14px;
+	  }
+
+	  body.scrolled nav a {
+		padding: 6px 10px;
+	  }
+	}
+
 
 
 
@@ -516,6 +542,11 @@
     // Init + handle navigation
     window.addEventListener('hashchange', () => show(location.hash));
     document.addEventListener('DOMContentLoaded', () => show(location.hash || '#why'));
+	// Compact header toggle on scroll (mobile)
+	window.addEventListener('scroll', () => {
+	  document.body.classList.toggle('scrolled', window.scrollY > 10);
+	});
+
   </script>
 </body>
 </html>
