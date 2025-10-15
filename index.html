@@ -195,6 +195,34 @@
 		padding: 6px 10px;
 	  }
 	}
+  /* --- Mobile header: compact + auto-hide on scroll --- */
+	@media (max-width: 768px) {
+	  header.site {
+	    transition: transform 0.28s ease, background 0.28s ease, padding 0.28s ease;
+	    will-change: transform;
+	  }
+	
+	  /* Compact look once you've scrolled a bit */
+	  body.scrolled header.site {
+	    padding-block: 4px;
+	    background: rgba(11, 14, 20, 0.95);
+	    backdrop-filter: blur(14px);
+	  }
+	  body.scrolled .navbar.two-line .brand img { width: 30px; height: 30px; }
+	  body.scrolled .navbar.two-line .name { font-size: 14px; }
+	  body.scrolled nav a { padding: 6px 10px; }
+	
+	  /* Fully hide the header when scrolling down */
+	  body.header-hide header.site {
+	    transform: translateY(-110%);
+	  }
+	}
+	
+	/* Respect reduced motion */
+	@media (prefers-reduced-motion: reduce) {
+	  header.site { transition: none !important; }
+	}
+
 
 
 
@@ -539,16 +567,70 @@
 
     }
 
-    // Init + handle navigation
-    window.addEventListener('hashchange', () => show(location.hash));
-    document.addEventListener('DOMContentLoaded', () => show(location.hash || '#why'));
-	// Compact header toggle on scroll (mobile)
-	window.addEventListener('scroll', () => {
-	  document.body.classList.toggle('scrolled', window.scrollY > 10);
-	});
+	// Compact + auto-hide header on mobile
+	(() => {
+	  const body = document.body;
+	  let lastY = window.scrollY || 0;
+	  let downAccum = 0;
+	  let upAccum = 0;
+	
+	  // thresholds tuned to feel natural on touch
+	  const HIDE_AFTER = 24;  // px accumulated while scrolling down before hiding
+	  const SHOW_AFTER = 12;  // px accumulated while scrolling up before showing
+	  const TOP_LOCK   = 50;  // always show near the very top
+	
+	  const onScroll = () => {
+	    const y = Math.max(0, window.scrollY || 0);
+	
+	    // toggle compact mode
+	    body.classList.toggle('scrolled', y > 10);
+	
+	    const delta = y - lastY;
+	    lastY = y;
+	
+	    // ignore tiny jitter
+	    if (Math.abs(delta) < 2) return;
+	
+	    if (delta > 0) {
+	      // scrolling down
+	      downAccum += delta;
+	      upAccum = 0;
+	
+	      if (y > TOP_LOCK && downAccum > HIDE_AFTER) {
+	        body.classList.add('header-hide');
+	      }
+	    } else {
+	      // scrolling up
+	      upAccum += -delta;
+	      downAccum = 0;
+	
+	      if (upAccum > SHOW_AFTER || y < TOP_LOCK) {
+	        body.classList.remove('header-hide');
+	      }
+	    }
+	  };
+	
+	  // passive for smoother scrolling
+	  window.addEventListener('scroll', onScroll, { passive: true });
+	
+	  // reset on orientation / resize to avoid odd states
+	  const reset = () => {
+	    lastY = window.scrollY || 0;
+	    downAccum = upAccum = 0;
+	    if (lastY < TOP_LOCK) body.classList.remove('header-hide');
+	    body.classList.toggle('scrolled', lastY > 10);
+	  };
+	  window.addEventListener('resize', reset);
+	  window.addEventListener('orientationchange', reset);
+	
+	  // initial state
+	  reset();
+	})();
+
 
   </script>
 </body>
 </html>
+
 
 
