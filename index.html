@@ -3,248 +3,519 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ryan Bahrey | Problem Solver and Advisor</title>
-  <meta name="description" content="Ryan Bahrey helps teams uncover unseen problems, shape practical solutions, and ship results. Book a conversation." />
-  <meta property="og:title" content="Ryan Bahrey | Problem Solver and Advisor" />
-  <meta property="og:description" content="Uncover the real problem. Map options. Deliver outcomes. Book time with Ryan." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-domain.example" />
-  <meta property="og:image" content="HEADSHOT.jpg" />
-  <link rel="preconnect" href="https://assets.calendly.com" />
+  <meta name="color-scheme" content="dark only" />
+  <title>JustEnuf2B • Ryan Bahrey</title>
+
   <style>
-    :root{--bg:#0b0e14;--card:#131826;--ink:#e7ecf3;--muted:#93a1b3;--brand:#4f8cff;--accent:#7ee787;--ring:rgba(79,140,255,.35)}
+    :root{--bg:#0b0e14;--card:#131826;--ink:#e7e7ea;--muted:#a6adbb;--accent:#77e1b8;--link:#9ac7ff;--ink-invert:#0b0e14}
     *{box-sizing:border-box}
     html,body{height:100%}
-    body {
-      margin: 0;
-      font-family: Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background: linear-gradient(180deg,#0b0e14 0%,#0f1320 100%);
-      background-attachment: fixed;   /* 👈 add this line */
-      color: var(--ink);
-    }
-    a{color:var(--brand);text-decoration:none}
-    a:hover{opacity:.9}
-    .wrap{max-width:1120px;margin:0 auto;padding:24px}
-    header {
-      display: flex;
-      flex-wrap: wrap;           /* allow nav to wrap to next line */
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 8px 0;
-    }
-    
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex: 1 1 100%;            /* forces full width so nav moves below */
-    }
-    
-    .brand img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid #223;
-    }
-    
-    .brand .name {
-      font-weight: 700;
-      letter-spacing: .2px;
-    }
-    
-    nav {
-      display: flex;
-      gap: 18px;
-    }
-    .cta{padding:10px 16px;border-radius:12px;background:var(--brand);color:white;font-weight:600;border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 18px rgba(79,140,255,.25)}
-    .cta.alt{background:transparent;border:1px solid #2b3246}
-    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;margin-top:28px}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border:1px solid #20283a;border-radius:20px;padding:28px}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid #2b3246;border-radius:999px;color:var(--muted);font-size:12px}
-    h1{font-size:40px;line-height:1.1;margin:14px 0 8px}
-    .lead{color:var(--muted);font-size:18px;line-height:1.6}
-    .hero .stats{display:flex;gap:18px;margin-top:16px}
-    .stat{background:#101626;border:1px solid #20283a;border-radius:14px;padding:12px 14px}
-    .stat b{display:block;font-size:18px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    h2 {font-size: 28px;margin: 24px 0 16px}
-    p{margin:0 0 12px}
-    .check{display:flex;gap:10px;align-items:flex-start}
-    .check .dot{width:10px;height:10px;background:var(--accent);border-radius:50%;margin-top:7px;box-shadow:0 0 0 6px rgba(126,231,135,.12)}
-    .section{margin:48px 0}
-    .badge{font-size:12px;color:var(--muted)}
-    .list{display:grid;gap:10px}
-    .panel{background:#0f1422;border:1px solid #1c2336;border-radius:16px;padding:18px}
-    .footer{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);padding:22px 0;border-top:1px solid #1c2336;margin-top:28px}
-    .calendar{background:#0f1422;border:1px solid #1c2336;border-radius:16px;overflow:hidden}
-    .note{font-size:13px;color:var(--muted)}
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .tag{display:inline-block;padding:6px 10px;border:1px solid #2b3246;border-radius:999px;color:var(--muted);font-size:12px;margin-right:6px;margin-bottom:6px}
-    .justified {text-align: justify;text-justify: inter-word}
-    .spaced {margin-top: 32px;margin-bottom: 32px}
-    .stats-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      margin-top: 24px;
-      margin-bottom: 36px;
-      flex-wrap: wrap;             /* allows stacking on small screens */
-    }
-    
-    .stat {
-      flex: 1 1 30%;
-      background: #101626;
-      border: 1px solid #20283a;
-      border-radius: 20px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    .stat:hover {
-      /* transform: translateY(-4px); */
-      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
-    }
-    
-    .stat b {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-    
-    .badge {
-      font-size: 14px;
-      color: var(--muted);
-    }
-    html {
-      scroll-behavior: smooth;
-    }
+    body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;color:var(--ink);
+      background:radial-gradient(1200px 800px at 15% -20%, rgba(119,225,184,.07), transparent 60%), var(--bg)}
+    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+    .container{max-width:1000px;margin:0 auto;padding:24px}
+    header.site{position:sticky;top:0;z-index:10;background:rgba(11,14,20,.75);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .navbar{display:flex;align-items:center;gap:16px;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px rgba(119,225,184,.65)}
+    nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+    nav a{display:inline-block;padding:8px 12px;border-radius:10px;color:var(--ink);opacity:.9;border:1px solid transparent}
+    nav a:hover{opacity:1;background:rgba(255,255,255,.05)}
+    nav a.active{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06)}
+	/* Header layout: headshot + name, then nav below */
+	.navbar.two-line {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: flex-start; /* left-align content */
+	  gap: 6px;                /* small vertical space between name and nav */
+	  padding-top: 8px;
+	  padding-bottom: 8px;
+	}
+
+	/* Brand row (image + name side by side) */
+	.brand {
+	  display: flex;
+	  align-items: center;
+	  gap: 10px;
+	}
+
+	.brand img {
+	  width: 36px;     /* smaller headshot */
+	  height: 36px;
+	  border-radius: 50%; /* circular crop */
+	  object-fit: cover;
+	}
+
+	.brand .name {
+	  font-weight: 600;
+	  font-size: 16px;
+	  color: var(--ink);
+	}
+
+	/* Nav below the brand */
+	.navbar.two-line nav ul {
+	  flex-wrap: wrap;
+	  gap: 10px;
+	}
+    main{padding:32px 0}
+    .hero{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:28px;margin-bottom:22px}
+    .hero h1{font-size:40px;line-height:1.1;margin:0 0 8px}
+    .lead{color:var(--muted);font-size:16px;margin:8px 0 20px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:10px 16px;border-radius:12px;font-weight:600;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:var(--ink)}
+    .btn.primary{background:var(--accent);color:var(--ink-invert);border-color:transparent}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{grid-column:span 12;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px}
+    @media(min-width:720px){.half{grid-column:span 6}.third{grid-column:span 4}}
+    .kicker{font-size:13px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+    .h2{font-size:24px;font-weight:700;margin:6px 0 10px}
+    .small{font-size:16px;color:var(--muted)}
+	/* bullet list style for descriptive cards */
+	ul.bullets {
+	  margin: 12px 0 0 20px;   /* indent slightly from paragraph */
+	  padding: 0;
+	  list-style-type: disc;   /* traditional bullets */
+	  color: var(--muted);
+	  font-size: 16px;
+	  line-height: 1.5;
+	}
+
+	ul.bullets li {
+	  margin-bottom: 6px;
+	}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14);margin:4px 6px 0 0;color:var(--muted)}
+    footer.site{border-top:1px solid rgba(255,255,255,.08);color:var(--muted);padding:24px 0;margin-top:40px}
+	/* routing + transition (final version) */
+	section[data-route] {
+	  position: relative;
+	  display: none;          /* hidden by default */
+	  opacity: 0;
+	  transform: translateY(40px);
+	  transition: opacity 0.35s ease, transform 0.35s ease;
+	  will-change: opacity, transform;
+	}
+
+	section[data-route].active {
+	  display: block;         /* show active section */
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+
+	/* optional: accessibility setting for reduced motion */
+	@media (prefers-reduced-motion: reduce) {
+	  section[data-route] {
+		transition: none;
+		transform: none;
+	  }
+	}
+	.tagline {
+	  margin: 8px 0 16px;
+	  max-width: 720px;
+	  color: var(--muted);
+	  line-height: 1.4;
+	}
+	<!--nav a {
+	  display: inline-block;
+	  padding: 8px 12px;
+	  border-radius: 10px;
+	  color: var(--ink);
+	  opacity: 0.9;
+	  border: 1px solid rgba(255, 255, 255, 0.08);
+	  transition: all 0.2s ease;
+	}
+
+	nav a:hover {
+	  opacity: 1;
+	  border-color: rgba(255, 255, 255, 0.25);
+	  background: rgba(255, 255, 255, 0.05);
+	  box-shadow: 0 0 8px rgba(119, 225, 184, 0.15);
+	}
+
+	nav a.active {
+	  border: 1px solid rgba(119, 225, 184, 0.5);
+	  background: rgba(119, 225, 184, 0.08);
+	  color: var(--accent);
+	  box-shadow: 0 0 10px rgba(119, 225, 184, 0.3);
+	}
+	-->
+	.btn {
+	  background: rgba(255, 255, 255, 0.06);
+	  border: 1px solid rgba(255, 255, 255, 0.1);
+	  color: var(--ink);
+	  transition: all 0.25s ease;
+	}
+	.btn:hover {
+	  background: rgba(255, 255, 255, 0.1);
+	}
 
 
-    @media (max-width:920px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
+	/* --- Primary CTA: Dual-tone gradient --- */
+	.btn.primary {
+	  background: linear-gradient(90deg, rgba(119, 225, 184, 0.9), rgba(119, 225, 184, 0.7));
+	  border: none;
+	  color: var(--ink-invert);
+	  font-weight: 600;
+	  box-shadow: 0 0 12px rgba(119, 225, 184, 0.25);
+	  transition: all 0.25s ease;
+	}
+
+	.btn.primary:hover {
+	  box-shadow: 0 0 20px rgba(119, 225, 184, 0.4);
+	  transform: translateY(-1px);
+	  background: linear-gradient(90deg, rgba(119, 225, 184, 1), rgba(119, 225, 184, 0.85));
+	}
+
+	/* Reserve space for the scrollbar on all pages */
+	html { scrollbar-gutter: stable; }
+
+	/* Fallback for older browsers: always show a vertical scrollbar */
+	body { overflow-y: scroll; }
+
+
+
+
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <img src="HEADSHOT.jpg" alt="Ryan Bahrey" />
-        <div class="name">Ryan Bahrey</div>
-      </div>
-      <nav>
-        <a href="#about" class="cta alt">About</a>
-        <a href="#work" class="cta alt">How I help</a>
-        <a href="#book" class="cta">Book a meeting</a>
-      </nav>
-    </header>
+	<!-- Header (unchanged) -->
+	
+	<header class="site">
+	  <div class="container navbar two-line">
+		<div class="brand">
+		  <img src="HEADSHOT.jpg" alt="Ryan Bahrey" />
+		  <div class="name">Ryan Bahrey</div>
+		</div>
 
-    <section class="section">
-        <span class="pill">Problem solving • Process • People focus</span>
-        <h1>Innovation that feels human.</h1>
-        <p class="lead justified">When the goal is clarity and momentum, I help teams find the root problem, shape smart solutions, and finish strong. Simple conversations. Real outcomes.</p>
-        <p class="lead">Let's talk.</p>
-        <div class="stats-row">
-          <div class="stat">
-            <b>PMO and Delivery</b>
-            <span class="badge">Azure • Power BI</span>
-          </div>
-          <div class="stat">
-            <b>Change Leadership</b>
-            <span class="badge">Prosci • People first</span>
-          </div>
-          <div class="stat">
-            <b>Advisory</b>
-            <span class="badge">Strategy to execution</span>
-          </div>
-        </div>
-        
+	  
+	       <!-- Site-wide hero (default view) -->
+	  	<h1>Make change feel human.</h1>
+		<p class="lead">
+		  Helping people and teams turn uncertainty into forward movement.
+		  I help you align technology, process, and trust so progress feels possible again. 
+		  Together, we repair what’s been strained and begin rebuilding clarity, confidence, and 
+		  connection so your teams can move forward with purpose. 
+		  Helping people and teams turn uncertainty into forward movement. 
+		  I help you align technology, process, and trust so progress feels possible again.
+		</p>
+		<div class="cta-row">
+		  <a class="btn primary" href="#book">Book a conversation</a>
+		  <!-- <a class="btn" href="#why">Read the story</a> -->
+		</div>
+		<nav>
+		  <ul>
+			<li><a href="#why" data-link>Why</a></li>
+			<li><a href="#how" data-link>How</a></li>
+			<li><a href="#what" data-link>What</a></li>
+			<li><a href="#about" data-link>About</a></li>
+			<li><a href="#book" data-link>Book</a></li>
+		  </ul>
+		</nav>
+	  </div>
+	</header>
 
-    </section>
 
-    <section id="who" class="section two">
-      <div class="panel">
-        <h2>What you can expect</h2>
-        <div class="list">
-          <div class="check justified"><span class="dot"></span><p>Focused discussions that lead to movement</p></div>
-          <div class="check justified"><span class="dot"></span><p>Practical options, clear tradeoffs, confident choices</p></div>
-          <div class="check justified"><span class="dot"></span><p>From decision to delivery, side-by-side</p></div>
-        </div>
-        <div style="margin-top:14px">
-          <span class="tag">Program management</span>
-          <span class="tag">Data and dashboards</span>
-          <span class="tag">Thoughtful change</span>
-          <span class="tag">Process improvement</span>
-          <span class="tag">Advisory</span>
-        </div>
+
+  <main class="container">
+  
+    <!-- Story section (formerly "Why") -->
+	<!-- WHY -->
+	<section id="why" data-route>
+
+	  <!-- Card 1: Why this matters -->
+	  <div class="hero">
+		<div class="kicker">Why this matters</div>
+		<h2 class="h2">When speed outpaced people’s sense of safety</h2>
+
+		<p class="lead">
+		  Somewhere between the rush to automate and the need to perform, people started feeling left behind.
+		</p>
+
+		<div class="context">
+		  <p>Leaders never set out to create fear. But after so many reorganizations and layoffs, even good intentions can sound like noise.</p>
+		  <p>Employees want to contribute, not just comply. They want to believe their work still matters.</p>
+		  <p>The real opportunity now isn’t more technology. It’s rebuilding trust.</p>
+		  <p>Change doesn’t have to feel like something done to people. It can be something we build with them. That’s where transformation starts to stick.</p>
+		</div>
+
+		<p class="small" style="margin-top:24px;"><em>Technology moves fast. People make it matter.</em></p>
+	  </div>
+
+	  <!-- Card 2: Belief / Tension / Opportunity -->
+	  <div class="grid" style="margin-top:22px;">
+		<div class="card third">
+		  <div class="kicker">Belief</div>
+		  <div class="h2">People → progress</div>
+		  <p class="small">Progress happens when people feel safe to learn and leaders make the future visible.</p>
+		</div>
+		<div class="card third">
+		  <div class="kicker">Tension</div>
+		  <div class="h2">Fear stalls decisions</div>
+		  <p class="small">Most teams weren’t enabled to adapt. Rebuild trust, then momentum returns.</p>
+		</div>
+		<div class="card third">
+		  <div class="kicker">Opportunity</div>
+		  <div class="h2">Make work move again</div>
+		  <p class="small">Clarity, practical options, and visible outcomes turn anxiety into action.</p>
+		</div>
+	  </div>
+
+	  <!-- Card 3: Who I help -->
+	  <div class="card" style="margin-top:22px;">
+		<div class="kicker">Who I help</div>
+		<div class="h2">For those caught between what was and what’s next</div>
+		<p class="small">
+		  Advisory conversations, program delivery, and people-focused change enablement across data, dashboards,
+		  diverse ecosystems, and pragmatic cloud adoption.
+		</p>
+		<ul class="bullets">
+		  <li>Teams adapting to new technology and needing to make it work in practice</li>
+		  <li>Leaders managing complex, cross-functional initiatives that require alignment and traction</li>
+		  <li>Teams moving from idea to execution who need clear decisions and momentum</li>
+		  <li>Founders and operators who want to turn plans into measurable results</li>
+		</ul>
+	  </div>
+
+	</section>
+
+
+
+
+    <!-- HOW -->
+    <section id="how" data-route>
+      <div class="hero">
+        <div class="kicker">How</div>
+        <h1>Discover → Decide → Deliver</h1>
+        <p class="lead">A lightweight cadence that makes the future visible and keeps work moving.</p>
+		<p class="small"><em>Because technology doesn’t drive change.... People using it well do.</em></p>
       </div>
-      <div class="panel">
-        <h2>Who I help</h2>
-        <p class="justified" style="margin-top:32px; margin-bottom:32px;">Leaders and teams who want clarity, movement, and results. Those who value honest conversation, smart options, and real progress over presentation polish.</p>
-        <div class="list" style="margin-top:10px">
-          <div class="check justified"><span class="dot"></span><p>Teams adapting to new technology and needing to make it work in practice</p></div>
-          <div class="check justified"><span class="dot"></span><p>Leaders managing complex, cross-functional initiatives that require alignment and traction</p></div>
-          <div class="check justified"><span class="dot"></span><p>Teams moving from idea to execution who need clear decisions and momentum</p></div>
-          <div class="check justified"><span class="dot"></span><p>Founders and operators who want to turn plans into measurable results</p></div>
-        </div>
-      </div>
-    </section>
-    
-    <section id="Approach" class="section">
-      <div class="panel justified">
-        <h2>Ryan's Approach</h2>
-        <p>Every organization has challenges hiding in plain sight. inefficiencies, gaps, or missed connections that quietly slow progress. Working together, we uncover what’s really going on, map practical options, and choose the path that fits your goals and team dynamics.</p>
-        <p>Teams succeed when people, process, and technology work in sync. Through clear communication and systems thinking, complex change becomes understandable and easier to sustain.</p>
-        <p>I blend technical depth with hands-on creativity to connect strategy to execution. Experience across IT systems, automation, safety, and operations gives me a grounded view of how things actually work. "Hobbies" include building real systems such as home automation, local cloud infrastruture, and water systems keeps my approach practical and adaptable.</p>
-        <p>Collaboration starts with conversation. If you’re exploring new ideas or need a different perspective on how to make work move, let’s talk.</p>
-        <p class="note">Recent focus areas include Microsoft 365, Azure DevOps, Power BI, Power Platform, and Oracle Cloud. Strong bias for clarity and momentum.</p>
-      </div>
-    </section>
-    
-    <section id="work" class="section">
-      <h2>How I help</h2>
-      <p class="justified" style="margin-top:32px; margin-bottom:32px;">
-        When we connect, my goal is to understand what you’re working toward and explore some options you may not have considered before. Together, we can clarify next steps and see if there’s a good fit for moving forward.
-      </p>
+
       <div class="grid">
-        <div class="panel">
-          <h3 style="margin-top:0">Discovery call</h3>
-          <p>Start with a quick conversation. Define the problem and a first step. If it is not a fit, no pressure.</p>
+        <div class="card third">
+          <div class="kicker">1 • Discover</div>
+          <div class="h2">Clarify the real problem</div>
+          <p class="small">90-min diagnostic • options with trade-offs • decision criteria.</p>
         </div>
-        <div class="panel">
-          <h3 style="margin-top:0">Diagnostic and options</h3>
-          <p>Map current state, risks, and constraints. Present options with cost, impact, and timeline.</p>
+        <div class="card third">
+          <div class="kicker">2 • Decide</div>
+          <div class="h2">Choose with confidence</div>
+          <p class="small">Shortlist & recommendation • communicate the “why now” • owners & next steps.</p>
         </div>
-        <div class="panel">
-          <h3 style="margin-top:0">Delivery support</h3>
-          <p>Partner through execution. Build dashboards, unblock owners, and keep communication clear.</p>
+        <div class="card third">
+          <div class="kicker">3 • Deliver</div>
+          <div class="h2">Ship outcomes</div>
+          <p class="small">Lightweight PMO rhythm • dashboards that matter • change & enablement plan.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:22px">
+        <div class="kicker">Principles</div>
+        <p class="small">Make it safe to learn • Default to clarity • Measure what matters • Communicate early • Remove friction</p>
+      </div>
+    </section>
+
+    <!-- WHAT -->
+    <section id="what" data-route>
+      <div class="hero">
+        <div class="kicker">What</div>
+        <h1>Offers that meet you where you are</h1>
+        <p class="lead">Choose the engagement that fits your moment. Start small; scale when it’s working.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card half">
+          <div class="kicker">Advisory</div>
+          <div class="h2">Conversations that move work</div>
+          <p class="small">Rapid diagnosis, practical options, clear decisions. Ideal for leaders needing clarity now.</p>
+          <ul class="small" style="margin-top:8px">
+            <li>Strategy checkpoints</li>
+            <li>Decision support & options</li>
+            <li>Exec-ready summaries</li>
+          </ul>
+        </div>
+        <div class="card half">
+          <div class="kicker">Delivery</div>
+          <div class="h2">From plan to shipped</div>
+          <p class="small">Lightweight PMO, unblockers, and data you can act on—without the overhead.</p>
+          <ul class="small" style="margin-top:8px">
+            <li>Roadmaps & release rhythm</li>
+            <li>Dashboards and telemetry</li>
+            <li>Risk/issue clearing</li>
+          </ul>
+        </div>
+
+        <div class="card half">
+          <div class="kicker">Change</div>
+          <div class="h2">People-first adoption</div>
+          <p class="small">Enablement plans, leader comms, and metrics that show adoption is real.</p>
+          <ul class="small" style="margin-top:8px">
+            <li>Stakeholder & change mapping</li>
+            <li>Champions and playbooks</li>
+            <li>Rollout comms & measurement</li>
+          </ul>
+        </div>
+        <div class="card half">
+          <div class="kicker">Get started</div>
+          <div class="h2">One conversation</div>
+          <p class="small">Bring a thorny problem. Leave with options, trade-offs, and next steps.</p>
+          <a class="btn primary" href="#book">Book now</a>
         </div>
       </div>
     </section>
 
-    <section id="book" class="section">
-      <h2>Book a meeting</h2>
-      <p class="note">Pick a time that works. Calendly is embedded below. If you prefer, email <a href="mailto:ryan@justenuf2b.com">ryan@justenuf2b.com</a>.</p>
-      <div class="calendar">
-        <div class="calendly-inline-widget" data-url="https://calendly.com/ryan-bahrey01/explore-with-a-new-perspective?utm_source=schedule_from_linkedin" style="min-width:320px;height:1100px"></div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- PROOF -->
+    <section id="proof" data-route>
+      <div class="hero">
+        <div class="kicker">Proof</div>
+        <h1>Stories & artifacts</h1>
+        <p class="lead">A few snapshots of problems solved and practical things you can touch.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card third">
+          <div class="kicker">Mini-case</div>
+          <div class="h2">Unsticking a stalled dashboard rollout</div>
+          <p class="small"><strong>Problem:</strong> Low trust & conflicting definitions. <strong>Action:</strong> clarified KPIs, single glossary, weekly outcomes review. <strong>Result:</strong> Exec decisions sped up; usage up 3×.</p>
+        </div>
+        <div class="card third">
+          <div class="kicker">Mini-case</div>
+          <div class="h2">From fear to feature cadence</div>
+          <p class="small"><strong>Problem:</strong> Layoff hangover stalled shipping. <strong>Action:</strong> reset goals, visual WIP limits, “show the future” comms. <strong>Result:</strong> 6 sprints shipped; NPS +18.</p>
+        </div>
+        <div class="card third">
+          <div class="kicker">Artifact</div>
+          <div class="h2">Change playbook outline</div>
+          <p class="small">A concise enablement plan: audiences, messages, channels, cadence, metrics. <a href="#">(download soon)</a></p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:22px">
+        <div class="kicker">From LinkedIn</div>
+        <ul class="small" style="margin-top:8px">
+          <li><a href="#" target="_blank">Start with Why—applied to PMO</a> — less theory, more delivery.</li>
+          <li><a href="#" target="_blank">Dashboards that change behavior</a> — fewer pixels, better decisions.</li>
+          <li><a href="#" target="_blank">Leaders: make the future visible</a> — trust-building comms in 5 minutes.</li>
+        </ul>
       </div>
     </section>
 
-    <footer class="footer">
-      <div>© <span id="y"></span> Ryan Bahrey</div>
-      <div>
-        <a href="https://www.linkedin.com/in/ryanbahrey" target="_blank" rel="noopener">LinkedIn</a>
-        <span style="opacity:.6">•</span>
-        <a href="mailto:ryan@justenuf2b.com">Email</a>
+    <!-- ABOUT -->
+    <section id="about" data-route>
+      <div class="hero">
+        <div class="kicker">About</div>
+        <h1>Hi, I’m Ryan Bahrey</h1>
+        <p class="lead">Consultant, program leader, and maker. I help teams move from decision to delivery—without losing the people along the way.</p>
+		<p>Every organization has challenges hiding in plain sight. inefficiencies, gaps, or missed connections that quietly slow progress. Working together, we uncover what’s really going on, map practical options, and choose the path that fits your goals and team dynamics.</p>
+		<p>Teams succeed when people, process, and technology work in sync. Through clear communication and systems thinking, complex change becomes understandable and easier to sustain.</p>
+		<p>I blend technical depth with hands-on creativity to connect strategy to execution. Experience across IT systems, automation, safety, and operations gives me a grounded view of how things actually work. "Hobbies" include building real systems such as home automation, local cloud infrastruture, and water systems keeps my approach practical and adaptable.</p>
+		<p>Collaboration starts with conversation. If you’re exploring new ideas or need a different perspective on how to make work move, let’s talk.</p>
       </div>
-    </footer>
-  </div>
+
+      <div class="grid">
+        <div class="card half">
+          <div class="kicker">Creds</div>
+          <ul class="small" style="margin-top:8px">
+            <li>Program/engagement lead in Microsoft-centric ecosystems</li>
+            <li>PMP • ACP • Prosci</li>
+            <li>Data & dashboards, PMO setup, change enablement</li>
+          </ul>
+        </div>
+        <div class="card half">
+          <div class="kicker">Maker side</div>
+          <p class="small">Hands-on engineering mindset (electrical, mechanical, DIY). It keeps me practical: simple flows, clear interfaces, robust safety.</p>
+        </div>
+      </div>
+	  <!-- What I bring -->
+	  <div class="card" style="margin-top:22px">
+		<div class="kicker">What I bring</div>
+		<div class="h2">Practical skills to help your team accelerate to results</div>
+		<p class="small">
+		  With extensive experience delivering programs of all sizes and complexities,
+		  I’ve learned how to identify practical solutions that deliver results and bring teams along on the journey.
+		  My work spans advisory conversations, program delivery, and people-focused change enablement
+		  across data, dashboards, diverse ecosystems, and pragmatic cloud adoption.
+		</p>
+		<span class="tag">Advisory</span>
+		<span class="tag">Strategy execution</span>
+		<span class="tag">Program delivery</span>
+		<span class="tag">Change leadership</span>
+		<span class="tag">Performance metrics</span>
+		<span class="tag">Data & dashboards</span>
+		<span class="tag">Work management</span>
+		<span class="tag">Process improvement</span>
+		<span class="tag">Facilitation</span>
+		<span class="tag">Communication strategy</span>
+		<span class="tag">Coaching & mentoring</span>
+		<span class="tag">Technology enablement</span>
+	  </div>
+    </section>
+
+    <!-- BOOK -->
+    <section id="book" data-route>
+      <div class="hero">
+        <div class="kicker">Book</div>
+        <h1>Let’s talk</h1>
+        <p class="lead">A focused conversation to clarify the problem and map practical options.</p>
+        <p class="small">
+          Pick a time that works. Calendly is embedded below. If you prefer,
+          <a href="mailto:ryan@justenuf2b.com?subject=Let%27s%20talk!">email ryan@justenuf2b.com</a>.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="kicker">Schedule</div>
+        <p class="small">Pick a date and see the available times to meet.</p>
+        <div id="calendly-slot" style="min-width:320px;height:720px"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="container">
+      <div class="small">© <span id="year"></span> Ryan Bahrey • JustEnuf2B • <a href="mailto:ryanbahrey@justenuf2b.com">Contact</a></div>
+    </div>
+  </footer>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // Basic hash router + active nav + lazy Calendly
+    const routes = [...document.querySelectorAll('section[data-route]')];
+    const navLinks = [...document.querySelectorAll('nav a[data-link]')];
+    const yearEl = document.getElementById('year'); yearEl.textContent = new Date().getFullYear();
+
+    function show(route) {
+      const id = route?.replace('#','') || 'why';
+      routes.forEach(s => s.classList.remove('active'));
+      const el = document.getElementById(id) || document.getElementById('why');
+      el.classList.add('active');
+
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+id));
+
+      // Lazy-load Calendly only when #book is active
+      if (id === 'book') {
+        const slot = document.getElementById('calendly-slot');
+        if (slot && !slot.dataset.loaded) {
+          slot.dataset.loaded = '1';
+          const w = document.createElement('div');
+          w.className = 'calendly-inline-widget';
+          w.setAttribute('data-url', 'https://calendly.com/ryan-bahrey01/explore-with-a-new-perspective'); // <-- update your slug
+          w.style.minWidth = '320px'; w.style.height = '720px';
+          slot.appendChild(w);
+
+          const s = document.createElement('script');
+          s.src = 'https://assets.calendly.com/assets/external/widget.js';
+          s.async = true;
+          document.body.appendChild(s);
+        }
+      }
+
+      // scroll to top of content for better UX
+      //document.querySelector('main').scrollIntoView({behavior:'smooth', block:'start'});
+	  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    }
+
+    // Init + handle navigation
+    window.addEventListener('hashchange', () => show(location.hash));
+    document.addEventListener('DOMContentLoaded', () => show(location.hash || '#why'));
   </script>
 </body>
 </html>
