@@ -20,6 +20,8 @@
       /*--ink-invert:#0b0e14;*/
 	  --ink-invert:#FFA500;
 	  --border: rgba(255,255,255,0.08);
+	  --elementforeground: rgba(119, 225, 184, 0.9);
+	  --elementbackground: rgba(119, 225, 184, 0.7);
     }
 
     *{box-sizing:border-box}
@@ -222,7 +224,7 @@
     .btn.primary {
 	  /* layout */
 	  /* visual */
-      background: linear-gradient(90deg, rgba(119, 225, 184, 0.9), var(--ink)) 
+      background: linear-gradient(90deg, var(--elementforeground), var(--elementbackground);
 	  /*background: linear-gradient(90deg, rgba(119, 225, 184, 0.9), rgba(119, 225, 184, 0.7));*/
       border: none;
       color: var(--ink-invert);
@@ -773,6 +775,7 @@
   </script>
 </body>
 </html>
+
 
 
 
