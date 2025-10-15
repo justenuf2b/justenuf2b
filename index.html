@@ -645,7 +645,7 @@
 	
 	  const updateOpacity = () => {
 	    const y = Math.max(0, window.scrollY || 0);
-	    const opacity = Math.max(0.85, Math.min(1, 1 - y / 600));
+	    const opacity = Math.max(0.95, Math.min(1, 1 - y / 600));
 	    header.style.opacity = String(opacity);
 	    ticking = false;
 	  };
@@ -667,6 +667,7 @@
   </script>
 </body>
 </html>
+
 
 
 
