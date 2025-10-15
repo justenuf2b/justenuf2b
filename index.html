@@ -180,9 +180,12 @@
 
 	/* --- Desktop fade-only header --- */
 	@media (min-width: 769px) {
+	  header.site {
+		position: static;
+	  }
 	  body.header-hide header.site {
 	    transform: none; /* don’t slide on desktop */
-	    opacity: 0.4;      /* just fade */
+	    opacity: 0.6;      /* just fade */
 	  }
 	}
 
@@ -570,9 +573,26 @@
       window.addEventListener('orientationchange', reset);
       reset();
     })();
+    // Gradual fade on desktop as you scroll
+    (() => {
+      const mq = window.matchMedia('(min-width: 769px)');
+      const header = document.querySelector('header.site');
+
+      const onScrollFade = () => {
+        if (!mq.matches) return; // only on desktop
+        const y = Math.max(0, window.scrollY || 0);
+        const opacity = Math.max(0.4, Math.min(1, 1 - y / 250));
+        header.style.opacity = String(opacity);
+      };
+
+      window.addEventListener('scroll', onScrollFade, { passive: true });
+      window.addEventListener('resize', onScrollFade);
+      onScrollFade();
+    })();
   </script>
 </body>
 </html>
+
 
 
 
