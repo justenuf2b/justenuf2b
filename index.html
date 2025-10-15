@@ -9,12 +9,14 @@
   <style>
     :root {
       --bg:#0b0e14;
+	  --surface: #15171c;   /* shared background for cards, hero, etc. */
       --card:#131826;
       --ink:#e7e7ea;
       --muted:#a6adbb;
       --accent:#77e1b8;
       --link:#9ac7ff;
       --ink-invert:#0b0e14;
+	  --border: rgba(255,255,255,0.08);
     }
 
     *{box-sizing:border-box}
@@ -95,12 +97,14 @@
     .btn.primary{background:var(--accent);color:var(--ink-invert);border-color:transparent}
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
     .card {
+	  /* layout */
 	  grid-column: span 12;
-	  background: var(--card);
-	  border: 1px solid rgba(255,255,255,.08);
-	  border-radius: 16px;
 	  padding: 20px;
 	  min-height: 200px; /* helps prevent layout jiggle */
+	  /* visual */
+	  background: var(--surface);
+	  border: 1px solid var(--border); /*rgba(255,255,255,.08); */
+	  border-radius: 16px;
 	}
     @media(min-width:720px){.half{grid-column:span 6}.third{grid-column:span 4}}
     .kicker{font-size:13px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
@@ -707,6 +711,7 @@
   </script>
 </body>
 </html>
+
 
 
 
