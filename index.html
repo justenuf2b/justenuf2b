@@ -44,11 +44,35 @@
 	  transition: transform 0.28s ease, background 0.28s ease, padding 0.28s ease;
       /* transition:transform 0.28s ease, background 0.28s ease, padding 0.28s ease; */
       will-change:transform;
+	  /* layout */
+	  /* visual */
+	  /* motion (optional) */
+
     }
 
     .navbar{display:flex;align-items:center;gap:16px;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px rgba(119,225,184,.65)}
+    /* layout */
+	/* visual */
+	/* motion (optional) */
+    .brand{
+    	/* layout */
+		display:flex;
+		align-items:center;
+		gap:12px
+		/* visual */
+		/* motion (optional) */
+	}
+    .brand .dot{
+		/* layout */
+		width:10px;
+		height:10px;
+		border-radius:999px;
+    	/* visual */
+	    background:var(--accent);
+		box-shadow:0 0 24px var(--accent)
+		/* motion (optional) */
+	}
+	
     nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
     nav a{display:inline-block;padding:8px 12px;border-radius:10px;color:var(--ink);opacity:.9;border:1px solid transparent}
     nav a:hover{opacity:1;background:rgba(255,255,255,.05)}
@@ -79,11 +103,14 @@
 
     main{padding:32px 0}
 	.hero {
-	  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
-	  border: 1px solid rgba(255,255,255,.08);
+	  /* layout */
 	  border-radius: 20px;
 	  padding: 20px;
 	  margin: 0 0 22px 0; /* top margin set to 0 */
+	  /* visual */
+	  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+	  border: 1px solid var(--border); /*rgba(255,255,255,.08); */
+	  /* motion (optional */
 	}
 	
 	.hero h1 {
@@ -105,6 +132,7 @@
 	  background: var(--surface);
 	  border: 1px solid var(--border); /*rgba(255,255,255,.08); */
 	  border-radius: 16px;
+	  /* motion (optional) */
 	}
     @media(min-width:720px){.half{grid-column:span 6}.third{grid-column:span 4}}
     .kicker{font-size:13px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
@@ -160,6 +188,9 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       color: var(--ink);
       transition: all 0.25s ease;
+	  /* layout */
+	  /* visual */
+	  /* motion (optional) */
     }
     .btn:hover {
       background: rgba(255, 255, 255, 0.1);
@@ -172,11 +203,17 @@
       font-weight: 600;
       box-shadow: 0 0 12px rgba(119, 225, 184, 0.25);
       transition: all 0.25s ease;
-    }
+	  /* layout */
+	  /* visual */
+	  /* motion (optional) */
+	}
     .btn.primary:hover {
       box-shadow: 0 0 20px rgba(119, 225, 184, 0.4);
       transform: translateY(-1px);
       background: linear-gradient(90deg, rgba(119, 225, 184, 1), rgba(119, 225, 184, 0.85));
+	  /* layout */
+	  /* visual */
+	  /* motion (optional) */
     }
 
     html { scrollbar-gutter: stable; }
@@ -712,6 +749,7 @@
   </script>
 </body>
 </html>
+
 
 
 
