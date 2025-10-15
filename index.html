@@ -18,7 +18,7 @@
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{min-height:100%}
     body{
       margin:0;
       font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
@@ -593,13 +593,21 @@
       let lastY = window.scrollY || 0;
       let downAccum = 0, upAccum = 0;
 
-      const HIDE_AFTER = 24;
-      const SHOW_AFTER = 12;
+      const HIDE_AFTER = 40;
+      const SHOW_AFTER = 20;
       const TOP_LOCK   = 50;
 
       const onScroll = () => {
         const y = Math.max(0, window.scrollY || 0);
         body.classList.toggle('scrolled', y > 10);
+	  // prevent jiggle near bottom
+		const docH = document.documentElement.scrollHeight;
+		const winH = window.innerHeight;
+		if (y + winH >= docH - 2) {
+		  body.classList.remove('header-hide');
+		  return; // stop further hide/show toggles
+		}
+
 
         const delta = y - lastY;
         lastY = y;
@@ -656,6 +664,7 @@
   </script>
 </body>
 </html>
+
 
 
 
