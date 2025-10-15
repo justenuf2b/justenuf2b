@@ -178,16 +178,26 @@
 	    opacity: 0; /* or 0.4 if you prefer a partial fade */
 	  }
 	}
-	/* Desktop: solid header so content never shows through */
+	/* --- Desktop: keep header visible, solid, and never hide --- */
 	@media (min-width: 769px) {
 	  header.site {
-	    background: rgba(11,14,20,1);   /* solid */
-	    backdrop-filter: none;           /* remove blur halo */
+	    position: sticky;          /* stays fixed at top */
+	    top: 0;
+	    background: rgba(11,14,20,1); /* solid background */
+	    backdrop-filter: none;        /* no blur halo */
 	  }
+	
 	  body.scrolled header.site {
-	    background: rgba(11,14,20,1);   /* keep solid while compact */
+	    background: rgba(11,14,20,1); /* stays solid while compact */
+	  }
+	
+	  /* disable fade/slide on desktop */
+	  body.header-hide header.site {
+	    transform: none;
+	    opacity: 1;
 	  }
 	}
+
 
 	/* Smoothly collapse the lead + CTA when scrolled */
 	header.site .lead,
@@ -615,25 +625,28 @@
       window.addEventListener('orientationchange', reset);
       reset();
     })();
-    // Gradual fade on desktop as you scroll
-    (() => {
-      const mq = window.matchMedia('(min-width: 769px)');
-      const header = document.querySelector('header.site');
+	// Gradual fade on desktop as you scroll
+	(() => {
+	  const mq = window.matchMedia('(min-width: 769px)');
+	  const header = document.querySelector('header.site');
+	
+	  const onScrollFade = () => {
+	    if (!mq.matches) return; // only on desktop
+	    const y = Math.max(0, window.scrollY || 0);
+	    // Fade more gently: stays mostly visible, fades to 0.85 at ~600px scroll
+	    const opacity = Math.max(0.85, Math.min(1, 1 - y / 600));
+	    header.style.opacity = String(opacity);
+	  };
+	
+	  window.addEventListener('scroll', onScrollFade, { passive: true });
+	  window.addEventListener('resize', onScrollFade);
+	  onScrollFade();
+	})();
 
-      const onScrollFade = () => {
-        if (!mq.matches) return; // only on desktop
-        const y = Math.max(0, window.scrollY || 0);
-        const opacity = Math.max(0.4, Math.min(1, 1 - y / 250));
-        header.style.opacity = String(opacity);
-      };
-
-      window.addEventListener('scroll', onScrollFade, { passive: true });
-      window.addEventListener('resize', onScrollFade);
-      onScrollFade();
-    })();
   </script>
 </body>
 </html>
+
 
 
 
