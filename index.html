@@ -220,15 +220,16 @@
     }
 
     .btn.primary {
-      background: linear-gradient(90deg, rgba(119, 225, 184, 0.9), rgba(119, 225, 184, 0.7));
+	  /* layout */
+	  /* visual */
+      background: linear-gradient(90deg, var(--ink), var(--ink)) 
+	  /*background: linear-gradient(90deg, rgba(119, 225, 184, 0.9), rgba(119, 225, 184, 0.7));*/
       border: none;
       color: var(--ink-invert);
       font-weight: 600;
       box-shadow: 0 0 12px rgba(119, 225, 184, 0.25);
-      transition: all 0.25s ease;
-	  /* layout */
-	  /* visual */
 	  /* motion (optional) */
+      transition: all 0.25s ease;
 	}
     .btn.primary:hover {
       box-shadow: 0 0 20px rgba(119, 225, 184, 0.4);
@@ -772,6 +773,7 @@
   </script>
 </body>
 </html>
+
 
 
 
