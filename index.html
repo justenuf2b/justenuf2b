@@ -7,14 +7,41 @@
   <title>JustEnuf2B • Ryan Bahrey</title>
 
   <style>
-    :root{--bg:#0b0e14;--card:#131826;--ink:#e7e7ea;--muted:#a6adbb;--accent:#77e1b8;--link:#9ac7ff;--ink-invert:#0b0e14}
+    :root {
+      --bg:#0b0e14;
+      --card:#131826;
+      --ink:#e7e7ea;
+      --muted:#a6adbb;
+      --accent:#77e1b8;
+      --link:#9ac7ff;
+      --ink-invert:#0b0e14;
+    }
+
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;color:var(--ink);
-      background:radial-gradient(1200px 800px at 15% -20%, rgba(119,225,184,.07), transparent 60%), var(--bg)}
-    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+    body{
+      margin:0;
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+      color:var(--ink);
+      background:radial-gradient(1200px 800px at 15% -20%, rgba(119,225,184,.07), transparent 60%), var(--bg);
+    }
+
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+
     .container{max-width:1000px;margin:0 auto;padding:24px}
-    header.site{position:sticky;top:0;z-index:10;background:rgba(11,14,20,.75);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+
+    header.site{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(11,14,20,.75);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      transition:transform 0.28s ease, background 0.28s ease, padding 0.28s ease;
+      will-change:transform;
+    }
+
     .navbar{display:flex;align-items:center;gap:16px;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:12px}
     .brand .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 24px rgba(119,225,184,.65)}
@@ -22,41 +49,30 @@
     nav a{display:inline-block;padding:8px 12px;border-radius:10px;color:var(--ink);opacity:.9;border:1px solid transparent}
     nav a:hover{opacity:1;background:rgba(255,255,255,.05)}
     nav a.active{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06)}
-	/* Header layout: headshot + name, then nav below */
-	.navbar.two-line {
-	  display: flex;
-	  flex-direction: column;
-	  align-items: flex-start; /* left-align content */
-	  gap: 6px;                /* small vertical space between name and nav */
-	  padding-top: 8px;
-	  padding-bottom: 8px;
-	}
 
-	/* Brand row (image + name side by side) */
-	.brand {
-	  display: flex;
-	  align-items: center;
-	  gap: 10px;
-	}
+    /* Header layout: headshot + name, then nav below */
+    .navbar.two-line {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
 
-	.brand img {
-	  width: 36px;     /* smaller headshot */
-	  height: 36px;
-	  border-radius: 50%; /* circular crop */
-	  object-fit: cover;
-	}
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
 
-	.brand .name {
-	  font-weight: 600;
-	  font-size: 16px;
-	  color: var(--ink);
-	}
+    .brand .name {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--ink);
+    }
 
-	/* Nav below the brand */
-	.navbar.two-line nav ul {
-	  flex-wrap: wrap;
-	  gap: 10px;
-	}
     main{padding:32px 0}
     .hero{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:28px;margin-bottom:22px}
     .hero h1{font-size:40px;line-height:1.1;margin:0 0 8px}
@@ -70,164 +86,101 @@
     .kicker{font-size:13px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
     .h2{font-size:24px;font-weight:700;margin:6px 0 10px}
     .small{font-size:16px;color:var(--muted)}
-	/* bullet list style for descriptive cards */
-	ul.bullets {
-	  margin: 12px 0 0 20px;   /* indent slightly from paragraph */
-	  padding: 0;
-	  list-style-type: disc;   /* traditional bullets */
-	  color: var(--muted);
-	  font-size: 16px;
-	  line-height: 1.5;
-	}
+    ul.bullets {
+      margin: 12px 0 0 20px;
+      padding: 0;
+      list-style-type: disc;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    ul.bullets li { margin-bottom: 6px; }
 
-	ul.bullets li {
-	  margin-bottom: 6px;
-	}
     .tag{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14);margin:4px 6px 0 0;color:var(--muted)}
     footer.site{border-top:1px solid rgba(255,255,255,.08);color:var(--muted);padding:24px 0;margin-top:40px}
-	/* routing + transition (final version) */
-	section[data-route] {
-	  position: relative;
-	  display: none;          /* hidden by default */
-	  opacity: 0;
-	  transform: translateY(40px);
-	  transition: opacity 0.35s ease, transform 0.35s ease;
-	  will-change: opacity, transform;
-	}
 
-	section[data-route].active {
-	  display: block;         /* show active section */
-	  opacity: 1;
-	  transform: translateY(0);
-	}
+    /* --- Routing sections --- */
+    section[data-route] {
+      position: relative;
+      display: block;
+      opacity: 1;
+      transform: none;
+    }
+    .js section[data-route] {
+      display: none;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      will-change: opacity, transform;
+    }
+    .js section[data-route].active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-	/* optional: accessibility setting for reduced motion */
-	@media (prefers-reduced-motion: reduce) {
-	  section[data-route] {
-		transition: none;
-		transform: none;
-	  }
-	}
-	.tagline {
-	  margin: 8px 0 16px;
-	  max-width: 720px;
-	  color: var(--muted);
-	  line-height: 1.4;
-	}
-	<!--nav a {
-	  display: inline-block;
-	  padding: 8px 12px;
-	  border-radius: 10px;
-	  color: var(--ink);
-	  opacity: 0.9;
-	  border: 1px solid rgba(255, 255, 255, 0.08);
-	  transition: all 0.2s ease;
-	}
+    @media (prefers-reduced-motion: reduce) {
+      section[data-route] { transition: none; transform: none; }
+    }
 
-	nav a:hover {
-	  opacity: 1;
-	  border-color: rgba(255, 255, 255, 0.25);
-	  background: rgba(255, 255, 255, 0.05);
-	  box-shadow: 0 0 8px rgba(119, 225, 184, 0.15);
-	}
+    .tagline {
+      margin: 8px 0 16px;
+      max-width: 720px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
 
-	nav a.active {
-	  border: 1px solid rgba(119, 225, 184, 0.5);
-	  background: rgba(119, 225, 184, 0.08);
-	  color: var(--accent);
-	  box-shadow: 0 0 10px rgba(119, 225, 184, 0.3);
-	}
-	-->
-	.btn {
-	  background: rgba(255, 255, 255, 0.06);
-	  border: 1px solid rgba(255, 255, 255, 0.1);
-	  color: var(--ink);
-	  transition: all 0.25s ease;
-	}
-	.btn:hover {
-	  background: rgba(255, 255, 255, 0.1);
-	}
+    /* --- Buttons --- */
+    .btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--ink);
+      transition: all 0.25s ease;
+    }
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
 
+    .btn.primary {
+      background: linear-gradient(90deg, rgba(119, 225, 184, 0.9), rgba(119, 225, 184, 0.7));
+      border: none;
+      color: var(--ink-invert);
+      font-weight: 600;
+      box-shadow: 0 0 12px rgba(119, 225, 184, 0.25);
+      transition: all 0.25s ease;
+    }
+    .btn.primary:hover {
+      box-shadow: 0 0 20px rgba(119, 225, 184, 0.4);
+      transform: translateY(-1px);
+      background: linear-gradient(90deg, rgba(119, 225, 184, 1), rgba(119, 225, 184, 0.85));
+    }
 
-	/* --- Primary CTA: Dual-tone gradient --- */
-	.btn.primary {
-	  background: linear-gradient(90deg, rgba(119, 225, 184, 0.9), rgba(119, 225, 184, 0.7));
-	  border: none;
-	  color: var(--ink-invert);
-	  font-weight: 600;
-	  box-shadow: 0 0 12px rgba(119, 225, 184, 0.25);
-	  transition: all 0.25s ease;
-	}
+    html { scrollbar-gutter: stable; }
+    body { overflow-y: scroll; }
 
-	.btn.primary:hover {
-	  box-shadow: 0 0 20px rgba(119, 225, 184, 0.4);
-	  transform: translateY(-1px);
-	  background: linear-gradient(90deg, rgba(119, 225, 184, 1), rgba(119, 225, 184, 0.85));
-	}
+    /* --- Mobile compact + auto-hide header --- */
+    @media (max-width: 768px) {
+      body.scrolled header.site {
+        padding-block: 4px;
+        background: rgba(11, 14, 20, 0.95);
+        backdrop-filter: blur(14px);
+      }
+      body.scrolled .navbar.two-line .brand img { width: 30px; height: 30px; }
+      body.scrolled .navbar.two-line .name { font-size: 14px; }
+      body.scrolled nav a { padding: 6px 10px; }
 
-	/* Reserve space for the scrollbar on all pages */
-	html { scrollbar-gutter: stable; }
+      body.header-hide header.site {
+        transform: translateY(-110%);
+      }
+    }
 
-	/* Fallback for older browsers: always show a vertical scrollbar */
-	body { overflow-y: scroll; }
-	/* --- Mobile header compact mode --- */
-	@media (max-width: 768px) {
-	  header.site {
-		transition: all 0.3s ease;
-	  }
-
-	  body.scrolled header.site {
-		padding-block: 4px;
-		background: rgba(11, 14, 20, 0.95);
-		backdrop-filter: blur(14px);
-	  }
-
-	  body.scrolled .navbar.two-line .brand img {
-		width: 30px;
-		height: 30px;
-	  }
-
-	  body.scrolled .navbar.two-line .name {
-		font-size: 14px;
-	  }
-
-	  body.scrolled nav a {
-		padding: 6px 10px;
-	  }
-	}
-  /* --- Mobile header compact mode --- */
-	@media (max-width: 768px) {
-	  header.site {
-	    transition: all 0.3s ease;
-	  }
-	
-	  body.scrolled header.site {
-	    padding-block: 4px;
-	    background: rgba(11, 14, 20, 0.95);
-	    backdrop-filter: blur(14px);
-	  }
-	
-	  body.scrolled .navbar.two-line .brand img {
-	    width: 30px;
-	    height: 30px;
-	  }
-	
-	  body.scrolled .navbar.two-line .name {
-	    font-size: 14px;
-	  }
-	
-	  body.scrolled nav a {
-	    padding: 6px 10px;
-	  }
-	}
-
-
-
-
-
-
+    @media (prefers-reduced-motion: reduce) {
+      header.site { transition: none !important; }
+    }
   </style>
 </head>
+
+	
 <body>
 	<!-- Header (unchanged) -->
 	
@@ -522,36 +475,37 @@
   </main>
 
   <footer class="site">
-    <div class="container">
-      <div class="small">© <span id="year"></span> Ryan Bahrey • JustEnuf2B • <a href="mailto:ryan@justenuf2b.com">Contact</a></div>
+    <div class="container small">
+      © <span id="year"></span> Ryan Bahrey • JustEnuf2B • <a href="mailto:ryan@justenuf2b.com">Contact</a>
     </div>
   </footer>
 
   <script>
-    // Basic hash router + active nav + lazy Calendly
+    // Enable JS mode so routed transitions activate
+    document.documentElement.classList.add('js');
+
     const routes = [...document.querySelectorAll('section[data-route]')];
     const navLinks = [...document.querySelectorAll('nav a[data-link]')];
-    const yearEl = document.getElementById('year'); yearEl.textContent = new Date().getFullYear();
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
 
     function show(route) {
       const id = route?.replace('#','') || 'why';
       routes.forEach(s => s.classList.remove('active'));
       const el = document.getElementById(id) || document.getElementById('why');
       el.classList.add('active');
-
       navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+id));
 
-      // Lazy-load Calendly only when #book is active
       if (id === 'book') {
         const slot = document.getElementById('calendly-slot');
         if (slot && !slot.dataset.loaded) {
           slot.dataset.loaded = '1';
           const w = document.createElement('div');
           w.className = 'calendly-inline-widget';
-          w.setAttribute('data-url', 'https://calendly.com/ryan-bahrey01/explore-with-a-new-perspective'); // <-- update your slug
-          w.style.minWidth = '320px'; w.style.height = '720px';
+          w.setAttribute('data-url', 'https://calendly.com/ryan-bahrey01/explore-with-a-new-perspective');
+          w.style.minWidth = '320px';
+          w.style.height = '720px';
           slot.appendChild(w);
-
           const s = document.createElement('script');
           s.src = 'https://assets.calendly.com/assets/external/widget.js';
           s.async = true;
@@ -559,23 +513,55 @@
         }
       }
 
-      // scroll to top of content for better UX
-      //document.querySelector('main').scrollIntoView({behavior:'smooth', block:'start'});
-	  window.scrollTo({ top: 0, behavior: 'smooth' });
-
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-	// Compact header toggle on scroll (mobile)
-	window.addEventListener('scroll', () => {
-	  document.body.classList.toggle('scrolled', window.scrollY > 10);
-	});
-	
+    window.addEventListener('hashchange', () => show(location.hash));
+    document.addEventListener('DOMContentLoaded', () => show(location.hash || '#why'));
 
+    // Compact + auto-hide header
+    (() => {
+      const body = document.body;
+      let lastY = window.scrollY || 0;
+      let downAccum = 0, upAccum = 0;
 
+      const HIDE_AFTER = 24;
+      const SHOW_AFTER = 12;
+      const TOP_LOCK   = 50;
 
+      const onScroll = () => {
+        const y = Math.max(0, window.scrollY || 0);
+        body.classList.toggle('scrolled', y > 10);
+
+        const delta = y - lastY;
+        lastY = y;
+        if (Math.abs(delta) < 2) return;
+
+        if (delta > 0) {
+          downAccum += delta; upAccum = 0;
+          if (y > TOP_LOCK && downAccum > HIDE_AFTER) body.classList.add('header-hide');
+        } else {
+          upAccum += -delta; downAccum = 0;
+          if (upAccum > SHOW_AFTER || y < TOP_LOCK) body.classList.remove('header-hide');
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      const reset = () => {
+        lastY = window.scrollY || 0;
+        downAccum = upAccum = 0;
+        if (lastY < TOP_LOCK) body.classList.remove('header-hide');
+        body.classList.toggle('scrolled', lastY > 10);
+      };
+      window.addEventListener('resize', reset);
+      window.addEventListener('orientationchange', reset);
+      reset();
+    })();
   </script>
 </body>
 </html>
+
 
 
 
