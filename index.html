@@ -219,12 +219,13 @@
     body::before {
 	  content: "";
 	  display: block;
-	  height: 100px; /* match approximate full header height */
+	  height: 376px; /* match full header height */
 	}
 	
 	body.scrolled::before {
-	  height: 70px; /* match collapsed header height */
+	  height: 270px; /* match collapsed header height */
 	}
+	
 	body {
 	  overflow-y: scroll;             /* always show scrollbar */
 	  min-height: calc(100vh + 1px);  /* prevent exact-fit flicker */
@@ -706,6 +707,7 @@
   </script>
 </body>
 </html>
+
 
 
 
