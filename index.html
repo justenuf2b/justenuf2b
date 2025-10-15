@@ -161,6 +161,7 @@
 
 	/* --- Mobile compact + auto-hide header --- */
 	@media (max-width: 768px) {
+	  header.site { border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: 0 2px 10px rgba(0,0,0,0.25); }
 	  body.scrolled header.site {
 	    padding-block: 4px;
 	    background: rgba(11, 14, 20, 0.95);
@@ -177,16 +178,14 @@
 	    opacity: 0; /* or 0.4 if you prefer a partial fade */
 	  }
 	}
-	/* --- Desktop: keep header visible (sticky), no hide --- */
+	/* Desktop: solid header so content never shows through */
 	@media (min-width: 769px) {
 	  header.site {
-	    position: sticky;
-	    top: 0;
+	    background: rgba(11,14,20,1);   /* solid */
+	    backdrop-filter: none;           /* remove blur halo */
 	  }
-	  /* disable the hide effect on desktop */
-	  body.header-hide header.site {
-	    transform: none;
-	    opacity: 1;
+	  body.scrolled header.site {
+	    background: rgba(11,14,20,1);   /* keep solid while compact */
 	  }
 	}
 
@@ -635,6 +634,7 @@
   </script>
 </body>
 </html>
+
 
 
 
