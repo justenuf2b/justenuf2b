@@ -198,6 +198,15 @@
 	    opacity: 1;
 	  }
 	}
+    body::before {
+	  content: "";
+	  display: block;
+	  height: 100px; /* match approximate full header height */
+	}
+	
+	body.scrolled::before {
+	  height: 70px; /* match collapsed header height */
+	}
 
 
 	/* Smoothly collapse the lead + CTA when scrolled */
@@ -668,6 +677,7 @@
   </script>
 </body>
 </html>
+
 
 
 
