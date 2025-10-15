@@ -552,7 +552,7 @@
     // Enable JS mode so routed transitions activate
     document.documentElement.classList.add('js');
 
-    const ENABLE_HEADER_HIDE = false;
+    const ENABLE_HEADER_HIDE = true;
     const routes = [...document.querySelectorAll('section[data-route]')];
     const navLinks = [...document.querySelectorAll('nav a[data-link]')];
     const yearEl = document.getElementById('year');
@@ -637,6 +637,7 @@
       reset();
     })();
 	}
+	  
 	// Gradual fade on desktop as you scroll (debounced)
 	(() => {
 	  const mq = window.matchMedia('(min-width: 769px)');
@@ -667,6 +668,7 @@
   </script>
 </body>
 </html>
+
 
 
 
