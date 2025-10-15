@@ -177,21 +177,63 @@
 	    opacity: 0; /* or 0.4 if you prefer a partial fade */
 	  }
 	}
-
-	/* --- Desktop fade-only header --- */
+	/* --- Desktop: keep header visible (sticky), no hide --- */
 	@media (min-width: 769px) {
 	  header.site {
-		position: static;
+	    position: sticky;
+	    top: 0;
 	  }
+	  /* disable the hide effect on desktop */
 	  body.header-hide header.site {
-	    transform: none; /* don’t slide on desktop */
-	    opacity: 0.6;      /* just fade */
+	    transform: none;
+	    opacity: 1;
 	  }
 	}
+
+	/* Smoothly collapse the lead + CTA when scrolled */
+	header.site .lead,
+	header.site .cta-row {
+	  transition: opacity .25s ease, max-height .25s ease, margin .25s ease, padding .25s ease;
+	  will-change: opacity, max-height, margin, padding;
+	}
+	
+	body.scrolled header.site .lead,
+	body.scrolled header.site .cta-row {
+	  opacity: 0;
+	  max-height: 0;
+	  margin: 0;
+	  padding: 0;
+	  overflow: hidden;
+	  pointer-events: none;
+	}
+	
+	/* Optional: tighten spacing + slightly shrink headline while scrolled */
+	body.scrolled .navbar.two-line { gap: 4px; padding-top: 6px; padding-bottom: 6px; }
+	@media (max-width: 768px) {
+	  body.scrolled header.site h1 { font-size: 28px; line-height: 1.2; }
+	}
+
 
     @media (prefers-reduced-motion: reduce) {
       header.site { transition: none !important; }
     }
+  	/* Smoothly collapses the lead + CTA when scrolled */
+	header.site .lead,
+	header.site .cta-row {
+	  transition: opacity .25s ease, max-height .25s ease, margin .25s ease, padding .25s ease;
+	  will-change: opacity, max-height, margin, padding;
+	}
+	
+	body.scrolled header.site .lead,
+	body.scrolled header.site .cta-row {
+	  opacity: 0;
+	  max-height: 0;
+	  margin: 0;
+	  padding: 0;
+	  overflow: hidden;
+	  pointer-events: none;
+	}
+
   </style>
 </head>
 
@@ -593,6 +635,7 @@
   </script>
 </body>
 </html>
+
 
 
 
