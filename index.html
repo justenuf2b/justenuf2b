@@ -11,6 +11,8 @@
       --bg:#0b0e14;
       --surface: #15171c;   /* shared background for cards, hero, etc. */
       --card:#131826;
+      --sectiongapbottom: 64px;
+      --sectiongaptop: 64px;
       /*--ink:#e7e7ea;*/
       --ink:#f3edf3;
       --muted:#a6adbb;
@@ -31,6 +33,7 @@
       --borderbutton2: rgba(255,255,255,0.1);
       --backgroundheader: rgba(11,14,20,.75);
       --shadowbutton: rgba(119,225,184,0.25);
+
     }
     :root.inverse {
       --bg: #f3f4f6;               /* light neutral background (inverse of #0b0e14) */
@@ -141,7 +144,7 @@
 	  /* layout */
 	  border-radius: 20px;
 	  padding: 20px;
-	  margin: 0 0 22px 0; /* top margin set to 0 */
+	  margin: var(--sectiongaptop) 0 var(--sectiongapbottom) 0;
 	  /* visual */
 	  background: linear-gradient(180deg, var(--borderbottom),var(--borderbottom2));
 	  border: 1px solid var(--border);
@@ -183,6 +186,7 @@
 	  /* layout */
 	  grid-column: span 12;
 	  padding: 20px;
+    margin: var(--sectiongaptop) 0 var(--sectiongapbottom) 0;
 	  min-height: 200px; /* helps prevent layout jiggle */
 	  /* visual */
 	  background: var(--surface);
