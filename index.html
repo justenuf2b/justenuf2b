@@ -225,6 +225,10 @@
 	body.scrolled::before {
 	  height: 70px; /* match collapsed header height */
 	}
+	body {
+	  overflow-y: scroll;             /* always show scrollbar */
+	  min-height: calc(100vh + 1px);  /* prevent exact-fit flicker */
+	}
 
 
 	/* Smoothly collapse the lead + CTA when scrolled */
@@ -696,6 +700,7 @@
   </script>
 </body>
 </html>
+
 
 
 
