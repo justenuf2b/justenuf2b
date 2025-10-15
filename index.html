@@ -76,8 +76,19 @@
     }
 
     main{padding:32px 0}
-    .hero{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;margin-bottom:22px}
-    .hero h1{font-size:40px;line-height:1.1;margin:0 0 8px}
+	.hero {
+	  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+	  border: 1px solid rgba(255,255,255,.08);
+	  border-radius: 20px;
+	  padding: 20px;
+	  margin: 0 0 22px 0; /* top margin set to 0 */
+	}
+	
+	.hero h1 {
+	  font-size: 40px;
+	  line-height: 1.1;
+	  margin: 0 0 8px;
+	}
     .lead{color:var(--muted);font-size:16px;margin:8px 0 20px}
     .cta-row{display:flex;gap:12px;flex-wrap:wrap}
     .btn{display:inline-block;padding:10px 16px;border-radius:12px;font-weight:600;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:var(--ink)}
@@ -591,7 +602,8 @@
         }
       }
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
+
     }
 
     window.addEventListener('hashchange', () => show(location.hash));
@@ -677,6 +689,7 @@
   </script>
 </body>
 </html>
+
 
 
 
