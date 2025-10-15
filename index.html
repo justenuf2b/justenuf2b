@@ -9,19 +9,47 @@
   <style>
     :root {
       --bg:#0b0e14;
-	  --surface: #15171c;   /* shared background for cards, hero, etc. */
+      --surface: #15171c;   /* shared background for cards, hero, etc. */
       --card:#131826;
       /*--ink:#e7e7ea;*/
-	  --ink:#FFA500;
+      --ink:#f3edf3;
       --muted:#a6adbb;
       /*--accent:#77e1b8;*/
-	  --accent:#FFA500;
-      --link:#9ac7ff;
+      /*--accent:#130d01;*/
+      --accent:#e49e10; /* temporary for testing */
+      --link:#77e1b8;
       /*--ink-invert:#0b0e14;*/
-	  --ink-invert:#FFA500;
-	  --border: rgba(255,255,255,0.08);
-	  --elementforeground: rgba(119, 225, 184, 0.9);
-	  --elementbackground: rgba(119, 225, 184, 0.7);
+      --ink-invert:#131826;
+      --border: rgba(255,255,255,0.08);
+      --elementforeground: rgba(119, 225, 184, 0.9);
+      --elementbackground: rgba(119, 225, 184, 0.7);
+      /* header elements */
+      --borderbottom: rgba(255, 255, 255, 0.06);
+      --borderbottom2: rgba(255,255,255,0);
+      /*--borderbutton: rgba(255,255,255,.14);*/
+      --borderbutton: rgba(219, 107, 211, 0.14);
+      --borderbutton2: rgba(255,255,255,0.1);
+      --backgroundheader: rgba(11,14,20,.75);
+      --shadowbutton: rgba(119,225,184,0.25);
+    }
+    :root.inverse {
+      --bg: #f3f4f6;               /* light neutral background (inverse of #0b0e14) */
+      --surface: #e9ebef;          /* light surface tone for cards/hero */
+      --card: #dde0e8;             /* slightly darker card tone */
+      --ink: #0b0e14;              /* main text, inverted from your bg */
+      --muted: #444a57;            /* muted gray for secondary text */
+      --accent: #1b60ef;           /* complementary blue tone to your warm orange accent */
+      --link: #17886d;             /* inverse of mint-green; subtle teal */
+      --ink-invert: #f7f8fa;       /* for text on accent backgrounds */
+      --border: rgba(0, 0, 0, 0.1); /* light theme border */
+      --elementforeground: rgba(255, 166, 90, 0.9);  /* orange-gold glow (inverse of mint) */
+      --elementbackground: rgba(255, 166, 90, 0.7);  /* softer glow */
+      --borderbottom: rgba(0, 0, 0, 0.1);
+      --borderbottom2: rgba(0, 0, 0, 0);
+      --borderbutton: rgba(20, 90, 150, 0.14);
+      --borderbutton2: rgba(0, 0, 0, 0.1);
+      --backgroundheader: rgba(243, 244, 246, 0.85); /* semi-opaque light header */
+      --shadowbutton: rgba(30, 60, 100, 0.25);       /* cool shadow tint */
     }
 
     *{box-sizing:border-box}
@@ -39,44 +67,46 @@
     .container{max-width:1000px;margin:0 auto;padding:24px}
 
     header.site{
+      /* layout */
       position:sticky;
       top:0;
       z-index:10;
-      background:rgba(11,14,20,.75);
       backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.06);
-	  /*transition: transform 0.5s ease, opacity 0.28s ease, background 0.28s ease, padding 0.28s ease;*/
-	  transition: transform 0.28s ease, background 0.28s ease, padding 0.28s ease;
-      /* transition:transform 0.28s ease, background 0.28s ease, padding 0.28s ease; */
+      /* visual */
+      border-bottom:3px solid var(--borderbottom); /*(255,255,255,.06);*/
+      background:var(--backgroundheader);
+      /* motion (optional) */
+      transition: transform 0.28s ease, background 0.28s ease, padding 0.28s ease;
       will-change:transform;
-	  /* layout */
-	  /* visual */
-	  /* motion (optional) */
-
     }
 
-    .navbar{display:flex;align-items:center;gap:16px;justify-content:space-between}
-    /* layout */
-	/* visual */
-	/* motion (optional) */
+    .navbar{
+      /* layout */
+      display:flex;
+      align-items:center;
+      gap:16px;
+      justify-content:space-between
+      /* visual */
+      /* motion (optional) */
+    }
     .brand{
-    	/* layout */
-		display:flex;
-		align-items:center;
-		gap:12px
-		/* visual */
-		/* motion (optional) */
+      /* layout */
+      display:flex;
+      align-items:center;
+      gap:12px
+      /* visual */
+      /* motion (optional) */
 	}
     .brand .dot{
-		/* layout */
-		width:10px;
-		height:10px;
-		border-radius:999px;
-    	/* visual */
-	    background:var(--accent);
-		box-shadow:0 0 24px var(--accent)
-		/* motion (optional) */
-	}
+      /* layout */
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      /* visual */
+      background:var(--accent);
+      box-shadow:0 0 24px var(--accent)
+      /* motion (optional) */
+    }
 	
     nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
     nav a{display:inline-block;padding:8px 12px;border-radius:10px;color:var(--ink);opacity:.9;border:1px solid transparent}
@@ -113,8 +143,8 @@
 	  padding: 20px;
 	  margin: 0 0 22px 0; /* top margin set to 0 */
 	  /* visual */
-	  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
-	  border: 1px solid var(--border); /*rgba(255,255,255,.08); */
+	  background: linear-gradient(180deg, var(--borderbottom),var(--borderbottom2));
+	  border: 1px solid var(--border);
 	  /* motion (optional */
 	}
 	
@@ -132,7 +162,8 @@
 		border-radius:12px;
 	  	/* visual */
 		font-weight:600;
-		border:1px solid rgba(255,255,255,.14);
+		/*border:1px solid rgba(255,255,255,.14);*/
+    border:10px solid var(--borderbutton);
 		background:var(--accent); /*rgba(255,255,255,.06);*/
 		color:var(--ink)
 	  	/* motion (optional) */
@@ -209,29 +240,30 @@
 
     /* --- Buttons --- */
     .btn {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      /* layout */
+      /* visual */
+      background: var(--borderbottom);
+      border: 1px solid var(--borderbutton2);
       color: var(--ink);
+      /* motion (optional) */
       transition: all 0.25s ease;
-	  /* layout */
-	  /* visual */
-	  /* motion (optional) */
     }
     .btn:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--borderbutton2) /*rgba(255, 255, 255, 0.1);*/
     }
 
     .btn.primary {
 	  /* layout */
 	  /* visual */
-      /*background: linear-gradient(90deg, var(--elementforeground), var(--elementbackground);*/
-	  background: linear-gradient(90deg, rgba(119, 225, 184, 0.9), rgba(119, 225, 184, 0.7));
-      border: none;
-      color: var(--ink-invert);
-      font-weight: 600;
-      box-shadow: 0 0 12px rgba(119, 225, 184, 0.25);
+	  /*background: linear-gradient(90deg, rgba(119, 225, 184, 0.9), rgba(119, 225, 184, 0.7));*/
+    background: linear-gradient(90deg,var(--elementforeground),var(--elementbackground));
+    border: none;
+    color: var(--ink-invert);
+    font-weight: 600;
+    /*box-shadow: 0 0 12px rgba(119, 225, 184, 0.25);*/
+    box-shadow: 0 0 12px var(--shadowbutton);
 	  /* motion (optional) */
-      transition: all 0.25s ease;
+    transition: all 0.25s ease;
 	}
     .btn.primary:hover {
       box-shadow: 0 0 20px rgba(119, 225, 184, 0.4);
@@ -347,6 +379,7 @@
 	  display: block;
 	  height: 200px; /* adjust height as needed */
 	}
+  
 
   </style>
 </head>
@@ -769,7 +802,13 @@
 	  window.addEventListener('scroll', onScrollFade, { passive: true });
 	  window.addEventListener('resize', onScrollFade);
 	  updateOpacity();
+
+    /*// Apply inverse theme automatically at load
+    document.addEventListener("DOMContentLoaded", () => {
+    document.documentElement.classList.add("inverse");
+    */
 	})();
+
 
 
   </script>
