@@ -552,6 +552,7 @@
     // Enable JS mode so routed transitions activate
     document.documentElement.classList.add('js');
 
+    const ENABLE_HEADER_HIDE = false;
     const routes = [...document.querySelectorAll('section[data-route]')];
     const navLinks = [...document.querySelectorAll('nav a[data-link]')];
     const yearEl = document.getElementById('year');
@@ -588,7 +589,8 @@
     document.addEventListener('DOMContentLoaded', () => show(location.hash || '#why'));
 
     // Compact + auto-hide header
-    (() => {
+    if (ENABLE_HEADER_HIDE) {
+	  (() => {
       const body = document.body;
       let lastY = window.scrollY || 0;
       let downAccum = 0, upAccum = 0;
@@ -634,6 +636,7 @@
       window.addEventListener('orientationchange', reset);
       reset();
     })();
+	}
 	// Gradual fade on desktop as you scroll (debounced)
 	(() => {
 	  const mq = window.matchMedia('(min-width: 769px)');
@@ -664,6 +667,7 @@
   </script>
 </body>
 </html>
+
 
 
 
