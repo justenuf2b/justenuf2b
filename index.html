@@ -188,7 +188,13 @@
 	}
 
 
-	.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+	.cta-row{
+		display:flex;
+		gap:12px;
+		flex-wrap:wrap
+  	    justify-content: center; /* center items horizontally */
+  		margin-top: 40px;        /* add space above */
+	}
     .btn{
 		/* layout */
 		display:inline-block;
@@ -584,7 +590,7 @@
 		  <div class="quote-author">— Ryan Bahrey</div>
 	  </section>
 
-		<div class="hero">
+	  <div class="hero">
         <div class="kicker">What</div>
         <h1>Offers that meet you where you are</h1>
         <p class="lead">Choose the engagement that fits your moment. Start small; proceed when it’s working.</p>
@@ -644,7 +650,9 @@
 		    </ul>
         </div>
       </div>
-		<a class="btn primary" href="#book">Book now</a>
+	  <div class="cta-row">
+  		<a class="btn primary" href="#book">Book now</a>
+	  </div>
     </section>
 
     <!-- PROOF -->
@@ -888,6 +896,7 @@
   </script>
 </body>
 </html>
+
 
 
 
