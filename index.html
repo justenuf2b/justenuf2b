@@ -218,26 +218,44 @@
 	  /* motion (optional) */
 	
 	}
-    .grid {
-	  display: grid;
-	  gap: 16px;
-	  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	  justify-content: center; /* centers the last row */
+    .grid{
+	  display:grid;
+	  gap:16px;
+	  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+	  justify-content:center; /* centers the last row */
 	}
-    .card {
-      /* layout */
-      /* REMOVED THIS FOR THE WHAT PAGE: grid-column: span 12; */
-      padding: 20px;
-      margin: var(--sectiongaptopsmall) 0 var(--sectiongapbottomsmall) 0;
-      min-height: 200px; /* helps prevent layout jiggle */
-      /* visual */
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      /* motion (optional) */
+	.card{
+	  /* leave grid-column unset here */
+	  /* layout */
+	  padding:20px;
+	  margin:var(--sectiongaptopsmall) 0 var(--sectiongapbottomsmall) 0;
+	  min-height:200px;
+	  /* visual */
+  	  background:var(--surface);
+	  border:1px solid var(--border);
+	  border-radius:16px;
+	 /* motion (optional) */
     }
+	/* 12-col utility grid */
+	.grid-12{
+	  display:grid;
+	  gap:16px;
+	  grid-template-columns:repeat(12, 1fr);
+	}
+	
+	/* span utilities only apply on 12-col grids */
+	@media (min-width:720px){
+	  .grid-12 .half { grid-column: span 6; }
+	  .grid-12 .third{ grid-column: span 4; }
+	}
+
     @media(min-width:720px){.half{grid-column:span 6}.third{grid-column:span 4}}
-    .kicker{font-size:13px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+    .kicker{
+		font-size:13px;
+		letter-spacing:.12em;
+		color:var(--muted);
+		text-transform:uppercase
+	}
     .h2{font-size:24px;font-weight:700;margin:6px 0 10px}
     .small{font-size:16px;color:var(--muted)}
     ul.bullets {
@@ -897,6 +915,7 @@
   </script>
 </body>
 </html>
+
 
 
 
