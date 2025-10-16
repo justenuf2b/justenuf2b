@@ -13,6 +13,9 @@
       --card:#131826;
       --sectiongapbottom: 64px;
       --sectiongaptop: 64px;
+	  --sectiongapbottomsmall: 20px;
+      --sectiongaptopsmall: 20px;
+
       /*--ink:#e7e7ea;*/
       --ink:#f3edf3;
       --muted:#a6adbb;
@@ -214,7 +217,7 @@
       /* layout */
       grid-column: span 12;
       padding: 20px;
-      margin: var(--sectiongaptop) 0 var(--sectiongapbottom) 0;
+      margin: var(--sectiongaptopsmall) 0 var(--sectiongapbottomsmall) 0;
       min-height: 200px; /* helps prevent layout jiggle */
       /* visual */
       background: var(--surface);
@@ -585,7 +588,7 @@
       </div>
 
       <div class="grid">
-        <div class="card half">
+        <div class="card third">
           <div class="kicker">Advisory</div>
           <div class="h2">Conversations that move work</div>
           <p class="small">Rapid diagnosis, practical options, clear decisions. Ideal for leaders needing clarity now.</p>
@@ -595,7 +598,7 @@
             <li>Exec-ready summaries</li>
           </ul>
         </div>
-        <div class="card half">
+        <div class="card third">
           <div class="kicker">Delivery</div>
           <div class="h2">From plan to shipped</div>
           <p class="small">Lightweight PMO, unblockers, and data you can act on—without the overhead.</p>
@@ -606,7 +609,7 @@
           </ul>
         </div>
 
-        <div class="card half">
+        <div class="card third">
           <div class="kicker">Change</div>
           <div class="h2">People-first adoption</div>
           <p class="small">Enablement plans, leader comms, and metrics that show adoption is real.</p>
@@ -876,6 +879,7 @@
   </script>
 </body>
 </html>
+
 
 
 
