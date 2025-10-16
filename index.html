@@ -222,11 +222,11 @@
 	  display: grid;
 	  gap: 16px;
 	  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	  justify-content: center;
+	  justify-content: center; /* centers the last row */
 	}
     .card {
       /* layout */
-      grid-column: span 12;
+      /* REMOVED THIS FOR THE WHAT PAGE: grid-column: span 12; */
       padding: 20px;
       margin: var(--sectiongaptopsmall) 0 var(--sectiongapbottomsmall) 0;
       min-height: 200px; /* helps prevent layout jiggle */
@@ -897,6 +897,7 @@
   </script>
 </body>
 </html>
+
 
 
 
