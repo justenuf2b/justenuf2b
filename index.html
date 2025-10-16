@@ -218,10 +218,11 @@
 	  /* motion (optional) */
 	
 	}
-    .grid{
-		display:grid;
-		grid-template-columns:repeat(12,1fr);
-		gap:16px
+    .grid {
+	  display: grid;
+	  gap: 16px;
+	  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	  justify-content: center;
 	}
     .card {
       /* layout */
@@ -896,6 +897,7 @@
   </script>
 </body>
 </html>
+
 
 
 
