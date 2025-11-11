@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Project Update - Ryan Bahrey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .flipbook-container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .page {
+            display: none;
+            padding: 60px;
+            min-height: 600px;
+            animation: fadeIn 0.5s ease-in;
+            position: relative;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-footer {
+            position: absolute;
+            bottom: 30px;
+            left: 60px;
+            right: 60px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #718096;
+            font-style: italic;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        h1 {
+            color: #2d3748;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: #4a5568;
+            font-size: 2em;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-left: 6px solid #764ba2;
+            padding-left: 20px;
+        }
+
+        h3 {
+            color: #667eea;
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p, li {
+            color: #4a5568;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .meta-info {
+            color: #718096;
+            font-size: 0.95em;
+            margin-bottom: 30px;
+        }
+
+        /* Sparse Philosophy Page */
+        .philosophy-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 80px;
+            min-height: 600px;
+        }
+
+        .philosophy-statement {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 60px;
+            line-height: 1.3;
+        }
+
+        .philosophy-quote {
+            font-size: 1.8em;
+            color: #4a5568;
+            font-style: italic;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-bottom: 80px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .toc-section {
+            margin-bottom: 30px;
+        }
+
+        .toc-section h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc-list li {
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .toc-list li strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Project Card */
+        .project-card {
+            background: #f7fafc;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 6px solid #764ba2;
+        }
+
+        .project-card h2 {
+            margin-top: 0;
+            border-left: none;
+            padding-left: 0;
+            color: #2d3748;
+        }
+
+        .project-section {
+            margin: 25px 0;
+        }
+
+        .problem {
+            background: #fff5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #fc8181;
+        }
+
+        .solution {
+            background: #f0fff4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #68d391;
+        }
+
+        .human-impact {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .human-impact h4 {
+            margin-top: 0;
+            color: #667eea;
+        }
+
+        .architecture {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            margin: 15px 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea25 0%, #764ba225 100%);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .navigation {
+            background: #2d3748;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            color: white;
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .page-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 400px;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4a5568;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #667eea;
+            width: 10px;
+            height: 10px;
+        }
+
+        .dot:hover {
+            background: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                padding: 30px;
+                min-height: 500px;
+            }
+
+            .philosophy-page {
+                padding: 60px 40px;
+            }
+
+            .philosophy-statement {
+                font-size: 2.5em;
+            }
+
+            .philosophy-quote {
+                font-size: 1.4em;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .navigation {
+                padding: 15px 30px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .page-dots {
+                max-width: 300px;
+            }
+        }
+
+        .ramp-time {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 25px 0;
+        }
+    
+        /* Fix: ensure the philosophy page only appears on Page 2 when active */
+        .page.philosophy-page { display: none; }
+        .page.active.philosophy-page { display: flex; }
+
+    </style>
+</head>
+<body>
+    <div class="flipbook-container">
+        <!-- Page 1: Title -->
+        <div class="page active" id="page1">
+            <h1>Technical Project Update</h1>
+            <div class="meta-info">
+                <strong>From:</strong> Ryan Bahrey<br>
+                <strong>Date:</strong> November 10, 2025<br>
+                <strong>For:</strong> Technical colleague sync session<br>
+                <strong>Context:</strong> AI/automation projects portfolio overview
+            </div>
+
+            <div class="ramp-time">
+                ⚡ Ramp Time: ~30 Days with Applied Learning to Address Practical Problems
+            </div>
+
+            <h2>Executive Summary</h2>
+            <p>Built portfolio of 12+ automation and AI implementation projects demonstrating end-to-end capability: discovery → architecture → implementation → production. Focus areas: AI-powered automation, system integration, queue-based processing, real-time sync, and pragmatic AI adoption with governance frameworks.</p>
+
+            <p style="margin-top: 30px;"><strong>Current phase:</strong> Transitioning technical implementations into consulting portfolio positioning (strategy + delivery hybrid model). Building materials to position for AI transformation advisory work with mid-sized organizations.</p>
+        </div>
+
+        <!-- Page 2: Philosophy -->
+        <div class="page philosophy-page" id="page2">
+            <div class="philosophy-statement">
+                Make change feel human.
+            </div>
+
+            <div class="philosophy-quote">
+                "Somewhere between the rush to automate and the need to perform, people started feeling left behind."
+            </div>
+
+            <div class="page-footer">
+                Technology moves fast. People make it matter.
+            </div>
+        </div>
+
+        <!-- Page 3: Table of Contents -->
+        <div class="page" id="page3">
+            <h2>Table of Contents</h2>
+
+            <div class="toc">
+                <div class="toc-section">
+                    <h3>Production Systems (Active)</h3>
+                    <ul class="toc-list">
+                        <li onclick="goToPage(4)"><strong>Page 4:</strong> AI Meeting Transcription & Summarization</li>
+                        <li onclick="goToPage(5)"><strong>Page 5:</strong> Professional Email Writer (DISC-Aligned)</li>
+                        <li onclick="goToPage(6)"><strong>Page 6:</strong> Pandoc Document Conversion Automation</li>
+                        <li onclick="goToPage(7)"><strong>Page 7:</strong> Obsidian ↔ WSL Real-Time Sync</li>
+                        <li onclick="goToPage(8)"><strong>Page 8:</strong> AI Cost Dashboard</li>
+                        <li onclick="goToPage(9)"><strong>Page 9:</strong> Local LLM (Ollama) Integration</li>
+                    </ul>
+                </div>
+
+                <div class="toc-section">
+                    <h3>Pilot & Development Projects</h3>
+                    <ul class="toc-list">
+                        <li onclick="goToPage(10)"><strong>Page 10:</strong> Trade Ready - Construction Coordination Platform</li>
+                        <li onclick="goToPage(11)"><strong>Page 11:</strong> GarageMate - Automotive Diagnostic Assistant</li>
+                    </ul>
+                </div>
+
+                <div class="toc-section">
+                    <h3>Infrastructure & Meta-Projects</h3>
+                    <ul class="toc-list">
+                        <li onclick="goToPage(12)"><strong>Page 12:</strong> Linux for AI - Skills Development</li>
+                        <li onclick="goToPage(13)"><strong>Page 13:</strong> AI Project Management Governance</li>
+                        <li onclick="goToPage(14)"><strong>Page 14:</strong> HCR Deep Analysis System</li>
+                        <li onclick="goToPage(15)"><strong>Page 15:</strong> Portfolio Positioning System</li>
+                    </ul>
+                </div>
+
+                <div class="toc-section">
+                    <h3>Closing</h3>
+                    <ul class="toc-list">
+                        <li onclick="goToPage(16)"><strong>Page 16:</strong> Technical Stack & Principles</li>
+                        <li onclick="goToPage(17)"><strong>Page 17:</strong> The Intersection: Where I Operate</li>
+                        <li onclick="goToPage(18)"><strong>Page 18:</strong> Clarity & Human Integration</li>
+                        <li onclick="goToPage(19)"><strong>Page 19:</strong> Questions & Resources</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Meeting Transcription -->
+        <div class="page" id="page4">
+            <div class="project-card">
+                <h2>AI Meeting Transcription & Summarization</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> Manual meeting documentation 30-45 min/meeting, inconsistent quality, no searchable archive
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> Automated pipeline combining GPU-accelerated Whisper transcription with Claude API for multi-format summarization. Queue-based processing via systemd enables zero-touch operation: drop VTT or audio file, get narrative summary + bullets + action items + decisions + quotes within minutes. Meeting type detection (1-on-1, team, client, discovery, workshop) triggers adaptive prompts for context-appropriate outputs.
+                </div>
+
+                <div class="architecture">[Zoom VTT/Audio] → [GPU Whisper Transcription]
+    → [Queue (SQLite)] → [Claude API Summarization]
+    → [Multi-format Output] (Narrative, Bullets, Actions, Decisions, Quotes)</div>
+
+                <h4>Tech Stack:</h4>
+                <ul>
+                    <li>Python 3.12, Whisper (GPU RTX 4060), Claude API, systemd services</li>
+                    <li>inotify file monitoring → automatic queue addition</li>
+                    <li>Meeting type detection & adaptive prompt engineering</li>
+                </ul>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Meetings Processed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Time Reduction</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">27+ hrs</div>
+                        <div class="stat-label">Monthly Time Freed</div>
+                    </div>
+                </div>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> AI handles transcription grunt work; humans focus on insights and decisions<br>
+                    <strong>Process:</strong> Zero-touch operation removes manual documentation burden<br>
+                    <strong>Enablement:</strong> Searchable archive builds organizational knowledge over time<br>
+                    <strong>Result:</strong> People spend 5 minutes reviewing instead of 45 minutes documenting. Reduces meeting fatigue and improves action item follow-through.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 5: Email Writer -->
+        <div class="page" id="page5">
+            <div class="project-card">
+                <h2>Professional Email Writer (DISC-Aligned)</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> Email drafting 25 min/email average, 10 emails/week = 4.2 hours opportunity cost
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> AI writing assistant using Claude API with DISC personality-based style profiles (JSON-driven). System detects email format (general vs. known colleague) and direction (inbound vs. outbound), then generates voice-matched drafts requiring minimal editing. Style guardrails enforce consistency (no em dashes, standard bullet format, friendly-professional balance).
+                </div>
+
+                <div class="architecture">[User Context] → [DISC Style Profile] → [Claude API + Prompt Engineering]
+    → [Voice-Matched Draft] → [Minimal Editing Required]</div>
+
+                <h4>Tech Stack:</h4>
+                <ul>
+                    <li>Python, Claude API, JSON style profiles</li>
+                    <li>Context-aware prompt engineering (format detection, direction detection)</li>
+                    <li>DISC personality mapping (High S/C: patient, analytical, methodical)</li>
+                </ul>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">60-80%</div>
+                        <div class="stat-label">Time Reduction</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2.5-3 hrs</div>
+                        <div class="stat-label">Weekly Capacity Increase</div>
+                    </div>
+                </div>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> AI learns personal voice and style; maintains authentic communication<br>
+                    <strong>Process:</strong> Context-aware generation reduces drafting friction<br>
+                    <strong>Enablement:</strong> DISC profiles ensure consistency across scenarios<br>
+                    <strong>Result:</strong> Reduces communication anxiety and decision fatigue. People focus on relationships, not wordsmithing.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 6: Pandoc Automation -->
+        <div class="page" id="page6">
+            <div class="project-card">
+                <h2>Pandoc Document Conversion Automation</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> Manual document formatting 5-10 min/file, need HTML + DOCX outputs
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> Real-time file monitoring with inotify triggers Pandoc conversion the moment markdown files hit inbox. Dual output (HTML + DOCX) with custom CSS themes and Word templates applied automatically. Source files auto-archived, outputs organized by age via systemd daily timer. Completely hands-off: 29+ documents processed with zero manual intervention.
+                </div>
+
+                <div class="architecture">[Markdown in inbox/] → [inotify detection] → [Pandoc conversion]
+    → [Dual output: HTML + DOCX] → [Auto-archive source] → [Daily cleanup]</div>
+
+                <h4>Tech Stack:</h4>
+                <ul>
+                    <li>Pandoc (conversion engine), inotify-tools, systemd services + timers</li>
+                    <li>Custom CSS themes, Word reference templates</li>
+                    <li>Scheduled maintenance (daily at 10PM via systemd timer)</li>
+                </ul>
+
+                <span class="badge">29+ Documents</span>
+                <span class="badge">Zero-Touch Operation</span>
+                <span class="badge">Dual Format Output</span>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> Automation handles formatting; humans focus on content quality<br>
+                    <strong>Process:</strong> Drop-and-go workflow removes formatting friction entirely<br>
+                    <strong>Enablement:</strong> Consistent branding across all outputs without manual effort<br>
+                    <strong>Result:</strong> 217+ minutes saved across 29+ documents; eliminates formatting frustration. Writers write; system handles presentation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 7: Obsidian Sync -->
+        <div class="page" id="page7">
+            <div class="project-card">
+                <h2>Obsidian ↔ WSL Real-Time Sync</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> Files created in WSL not visible in Obsidian (Windows app), need bi-directional sync
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> Hybrid change detection using Unison sync engine. WSL side uses inotifywait for instant detection; Windows side uses polling (NTFS doesn't support inotify). Per-profile cooldown prevents sync storms when editing. 10-second detection latency, automatic backups (5 versions), conflict resolution (prefer newer). Handles multiple project folders concurrently.
+                </div>
+
+                <div class="architecture">WSL: /home/ryan/[project]/  ←→  Windows: Obsidian Vault/99_wsl_projects/[project]/
+    [Unison sync engine with hybrid change detection]
+    WSL: inotifywait | Windows: polling (NTFS limitations)</div>
+
+                <h4>Tech Stack:</h4>
+                <ul>
+                    <li>Unison 2.53.x (bi-directional sync)</li>
+                    <li>inotify (WSL change detection), polling (Windows side workaround)</li>
+                    <li>Per-profile cooldown (prevents sync storms)</li>
+                    <li>Automatic backups (5 versions retained)</li>
+                </ul>
+
+                <h4>Challenges Solved:</h4>
+                <ul>
+                    <li>Windows filesystem doesn't support inotify, so used hybrid approach</li>
+                    <li>Symlinks don't work across WSL/Windows boundary, so used Unison instead</li>
+                    <li>Conflict resolution (prefer newer file)</li>
+                    <li>NTFS permission compatibility (perms=0, fat=true)</li>
+                </ul>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> Solves cross-platform friction invisibly; tools work together seamlessly<br>
+                    <strong>Process:</strong> 10-second sync enables natural workflow without "save and transfer" interruptions<br>
+                    <strong>Enablement:</strong> Work in best tool for each task; system handles coordination<br>
+                    <strong>Result:</strong> Eliminates context switching overhead. Makes it safe to work across environments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 8: Cost Dashboard -->
+        <div class="page" id="page8">
+            <div class="project-card">
+                <h2>AI Cost Dashboard (On-Demand)</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> No unified view of API spending across providers (Anthropic, OpenAI, GenSpark)
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> Flask web dashboard with APScheduler running automated snapshots every 4 hours (when running). Multi-provider API integration using extensible template pattern. Currently supports Anthropic, designed for easy addition of OpenAI, GenSpark, and others. SQLite stores historical data for 30-day trend analysis. Auto-refresh dashboard provides real-time cost visibility.
+                </div>
+
+                <div class="architecture">[Flask Web App] → [Multi-provider API calls] → [SQLite snapshots]
+    → [APScheduler: 4hr intervals] → [Dashboard with auto-refresh]</div>
+
+                <h4>Tech Stack:</h4>
+                <ul>
+                    <li>Flask, SQLite, APScheduler, Anthropic SDK (extensible to others)</li>
+                    <li>REST API endpoints (/api/current, /api/snapshots, /api/summary)</li>
+                    <li>Historical trend analysis (30-day default, configurable)</li>
+                </ul>
+
+                <span class="badge">Multi-Provider</span>
+                <span class="badge">30-Day Trends</span>
+                <span class="badge">REST API</span>
+                <span class="badge">Extensible Template Pattern</span>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> Multi-provider visibility prevents runaway costs; data-driven AI budget decisions<br>
+                    <strong>Process:</strong> On-demand access when needed (monthly reviews, new provider evaluation)<br>
+                    <strong>Enablement:</strong> Historical trends inform optimization and provider selection<br>
+                    <strong>Result:</strong> Removes AI cost anxiety through transparency. Makes it safe to experiment with AI tools.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 9: Local LLM (Ollama) -->
+        <div class="page" id="page9">
+            <div class="project-card">
+                <h2>Local LLM (Ollama) Integration</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> Cloud API dependency for all AI workloads creates cost, latency, and privacy concerns. Need local option for sensitive data and offline work.
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> Ollama integration providing local LLM inference on WSL2 with GPU acceleration. Configured for privacy-sensitive workloads, offline capability, and cost-free experimentation. Models downloaded and managed locally (llama2, mistral, codellama). Verification scripts ensure GPU utilization and model availability.
+                </div>
+
+                <div class="architecture">[Local Request] → [Ollama Server (WSL2)] → [GPU-Accelerated Inference]
+    → [Local Models: llama2, mistral, codellama] → [Response]</div>
+
+                <h4>Tech Stack:</h4>
+                <ul>
+                    <li>Ollama server on WSL2 (Ubuntu)</li>
+                    <li>GPU acceleration (CUDA/ROCm for RTX 4060)</li>
+                    <li>Local model management and version control</li>
+                    <li>Python client libraries for integration</li>
+                </ul>
+
+                <span class="badge">Privacy-Preserving</span>
+                <span class="badge">Offline Capable</span>
+                <span class="badge">Cost-Free</span>
+                <span class="badge">GPU-Accelerated</span>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> Local inference removes cloud dependency; enables sensitive data processing<br>
+                    <strong>Process:</strong> Offline capability ensures continuity during network issues or travel<br>
+                    <strong>Enablement:</strong> Cost-free experimentation encourages learning without budget anxiety<br>
+                    <strong>Result:</strong> Makes it safe to explore AI with proprietary/sensitive data. Removes "can I afford to try this?" barrier.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 10: Trade Ready -->
+        <div class="page" id="page10">
+            <div class="project-card">
+                <h2>Trade Ready - Construction Coordination Platform</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> Small construction teams (3-12 people) lose billable hours to phone tag, information silos
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> Mobile-first web app enabling multi-party coordination with clear handoffs. Single-screen contractor interface shows serial task workflow with color-coded status (purple=your turn, gray=complete, white=upcoming). Multi-channel notifications (email live, SMS pending regulatory approval, push on roadmap) ensure visibility across all parties. Admin portal manages projects, contractors, tasks.
+                </div>
+
+                <h4>Status: Pilot Validation Phase</h4>
+                <ul>
+                    <li>MVP deployed, functional at justenuf2b.ai</li>
+                    <li>User research with pilot users (plumbing, HVAC contractors)</li>
+                    <li>Advisor review session (Mark Stowitts - 2hr product feedback)</li>
+                    <li>Iterating based on real-world workflow patterns</li>
+                </ul>
+
+                <h4>Tech Stack:</h4>
+                <ul>
+                    <li>Web-based (mobile-responsive)</li>
+                    <li>Twilio SMS integration (pending regulatory approval)</li>
+                    <li>Single-screen contractor interface (field-optimized)</li>
+                    <li>Color-coded status (purple=active, gray=complete, white=upcoming)</li>
+                </ul>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">5-10 hrs</div>
+                        <div class="stat-label">Weekly Time Saved per Contractor</div>
+                    </div>
+                </div>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> Single-screen interface designed for field work; color-coded status removes ambiguity<br>
+                    <strong>Process:</strong> Clear handoffs eliminate "who has the football?" phone tag<br>
+                    <strong>Enablement:</strong> Multi-channel notifications meet people where they are<br>
+                    <strong>Result:</strong> Reduces billable hour waste and communication stress. Contractors know what's next without asking. Pilot users report less end-of-day anxiety about forgotten handoffs.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 11: GarageMate -->
+        <div class="page" id="page11">
+            <div class="project-card">
+                <h2>GarageMate - Fleet Management & Diagnostic Assistant</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> Managing 6-vehicle fleet without automotive expertise. Service history scattered across receipts and notes, diagnostic codes cryptic, maintenance scheduling manual, CARFAX data locked in PDFs, no unified view of fleet health.
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> Comprehensive fleet management system combining AI diagnostic assistant with modern web interface. CLI mode (/garagemate slash command) provides interactive diagnostic sessions modeled after professional mechanics. Web interface offers fleet dashboard, service history tracking, maintenance scheduling, and CARFAX PDF import. FastAPI + HTMX for responsive, real-time updates without page reloads. SQLite database with complete service record management.
+                </div>
+
+                <div class="architecture">[CLI: Diagnostic Sessions] ← → [SQLite Database] ← → [Web UI: Fleet Management]
+    [CARFAX PDF Import] → [Service History] → [Maintenance Reminders]
+    [AI Assistant] → [Diagnostic Summaries] → [Action Plans]</div>
+
+                <h4>Tech Stack:</h4>
+                <ul>
+                    <li><strong>CLI Mode:</strong> Claude Code slash command, interactive Python agent, diagnostic workflow</li>
+                    <li><strong>Web Interface:</strong> FastAPI, HTMX 1.9.10, Tailwind CSS, Jinja2 templates</li>
+                    <li><strong>Data Layer:</strong> SQLite database, CARFAX PDF parser (pdfplumber), service record models</li>
+                    <li><strong>Features:</strong> Fleet dashboard, vehicle details, service management, maintenance schedules, diagnostics tracking</li>
+                </ul>
+
+                <h4>Web Interface Features:</h4>
+                <ul>
+                    <li><strong>Fleet Dashboard:</strong> 6-vehicle overview with statistics, active diagnostics, recent activity</li>
+                    <li><strong>CARFAX Import:</strong> Automated PDF parsing extracts service records (dates, odometer, facility, services performed)</li>
+                    <li><strong>Service Management:</strong> Add/view/track service records with parts costs, labor, references</li>
+                    <li><strong>Maintenance Reminders:</strong> Scheduled maintenance tracking with due dates and mileage intervals</li>
+                    <li><strong>Vehicle Analytics:</strong> Average mileage, total service costs, health trends per vehicle</li>
+                    <li><strong>Real-Time Updates:</strong> HTMX-powered interactions without full page reloads</li>
+                </ul>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">6 Vehicles</div>
+                        <div class="stat-label">Fleet Size</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">CLI + Web</div>
+                        <div class="stat-label">Dual Interface</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Auto Import</div>
+                        <div class="stat-label">CARFAX PDFs</div>
+                    </div>
+                </div>
+
+                <span class="badge">Slash Command: /garagemate</span>
+                <span class="badge">Web Dashboard</span>
+                <span class="badge">CARFAX Import</span>
+                <span class="badge">Maintenance Tracking</span>
+                <span class="badge">FastAPI + HTMX</span>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> AI diagnostic assistant + web interface provides expertise at point of need; CARFAX import eliminates manual data entry<br>
+                    <strong>Process:</strong> Unified fleet view replaces scattered receipts and notes; maintenance reminders prevent missed service<br>
+                    <strong>Enablement:</strong> Interview-style diagnostics teach automotive knowledge through use; service history builds maintenance intelligence over time<br>
+                    <strong>Result:</strong> Transforms car maintenance from intimidating to manageable. Fleet dashboard provides confidence in vehicle health status. AI diagnostics empowers informed mechanic conversations. CARFAX import saves hours of manual record entry. Makes it safe to handle 6-vehicle fleet without automotive background.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 12: Linux for AI -->
+        <div class="page" id="page12">
+            <div class="project-card">
+                <h2>Linux for AI - Skills Development</h2>
+
+                <div class="problem">
+                    <strong>Challenge:</strong> Consulting opportunities requiring cloud infrastructure and DevOps skills demand Linux proficiency. Skill gap limits billing rate potential and technical credibility.
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> 12-week hands-on curriculum (60-day schedule) building foundation for cloud certifications (OCI) and infrastructure consulting. Learning by doing: immediately applying commands to real automation projects. Structured progression: file navigation → searching/permissions → scripting → automation → cloud deployments. Documentation system (CLAUDE.md session memory, progress tracker, day-recaps) enables consistent learning velocity despite interruptions.
+                </div>
+
+                <h4>Status:</h4>
+                <p><strong>Week 1 Day 2 complete:</strong> 10 commands mastered (pwd, ls variations, cd, mkdir, touch, cp, mv, rm)</p>
+                <p><strong>Next:</strong> File viewing (cat, less, head, tail, wc), then grep/find/permissions</p>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">$100 → $150</div>
+                        <div class="stat-label">Hourly Rate Target (50% increase)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">~30 Days</div>
+                        <div class="stat-label">Ramp Time with Applied Learning</div>
+                    </div>
+                </div>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> Cloud infrastructure and DevOps skills expand service offerings<br>
+                    <strong>Process:</strong> Learning by doing with real automation projects; immediate application reduces forgetting<br>
+                    <strong>Enablement:</strong> Documentation system enables consistent velocity despite interruptions<br>
+                    <strong>Result:</strong> Reduces imposter syndrome through demonstrated capability. Makes it safe to take cloud consulting conversations. Builds confidence through systematic skill building.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 13: AI Project Management Governance -->
+        <div class="page" id="page13">
+            <div class="project-card">
+                <h2>AI Project Management Governance</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> AI-assisted project work lacks consistency across sessions. Context lost between conversations, decisions not documented, progress difficult to track.
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> Standardized governance framework for all AI-assisted projects. Each project includes .claude/ai-instructions.md (session start protocol, context), pmdocs/progress-report.md (status, metrics, next steps), and pmdocs/session-summaries/ (detailed logs). Central governance files (objectives.md, project-priorities-2025-q4.md, project-relationships.md) provide portfolio-level context. Session start protocol ensures AI agents check governance sync, maintain consistency, and document decisions.
+                </div>
+
+                <h4>Framework Components:</h4>
+                <ul>
+                    <li><strong>.claude/ai-instructions.md</strong> - Session start protocol, project context, AI agent guidance</li>
+                    <li><strong>pmdocs/progress-report.md</strong> - Current status, metrics, next steps, decisions needed</li>
+                    <li><strong>pmdocs/session-summaries/</strong> - Detailed session logs with date stamps</li>
+                    <li><strong>Central governance files</strong> - Portfolio-level objectives, priorities, relationships</li>
+                </ul>
+
+                <span class="badge">Standardized Framework</span>
+                <span class="badge">Session Continuity</span>
+                <span class="badge">Decision Tracking</span>
+                <span class="badge">Portfolio Visibility</span>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> AI agents maintain consistent context across sessions; no repeated explanations<br>
+                    <strong>Process:</strong> Governance-first approach prevents technical debt and scope creep<br>
+                    <strong>Enablement:</strong> Documentation enables knowledge transfer and portfolio-level decision-making<br>
+                    <strong>Result:</strong> Makes AI-assisted work feel organized and professional. Reduces "where did we leave off?" anxiety. Builds confidence in multi-project management. Portfolio visibility enables strategic prioritization.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 14: HCR Deep Analysis System -->
+        <div class="page" id="page14">
+            <div class="project-card">
+                <h2>HCR Deep Analysis System</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> Long-form content (books, detailed updates, research) requires synthesis across multiple sources. Manual analysis time-consuming, insights scattered, key themes missed.
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> Deep analysis system following detailed updates from an author to provide valuable insights. Process scalable and configurable to apply to vast sets of materials. Multi-stage pipeline: content extraction → chunked analysis → theme identification → synthesis → actionable insights. Configurable for different content types (books, articles, research papers, project documentation).
+                </div>
+
+                <div class="architecture">[Source Material] → [Content Extraction] → [Chunked Analysis]
+    → [Theme Identification] → [Cross-Reference Synthesis] → [Actionable Insights]</div>
+
+                <h4>Key Features:</h4>
+                <ul>
+                    <li><strong>Scalable Processing:</strong> Handles materials from single articles to multi-volume works</li>
+                    <li><strong>Configurable Analysis:</strong> Adapts to different content types and analysis goals</li>
+                    <li><strong>Theme Detection:</strong> Identifies recurring patterns and key concepts across sources</li>
+                    <li><strong>Synthesis Engine:</strong> Connects insights across disparate materials</li>
+                </ul>
+
+                <span class="badge">Scalable & Configurable</span>
+                <span class="badge">Multi-Source Synthesis</span>
+                <span class="badge">Theme Detection</span>
+                <span class="badge">Actionable Insights</span>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> AI handles deep reading and pattern recognition across large content sets<br>
+                    <strong>Process:</strong> Structured pipeline ensures comprehensive analysis without missing key themes<br>
+                    <strong>Enablement:</strong> Configurable system adapts to different research and learning needs<br>
+                    <strong>Result:</strong> Transforms reading from passive consumption to active insight generation. Makes it possible to tackle comprehensive analysis that would take weeks manually. Enables evidence-based decision-making from complex information sets.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 15: Portfolio Positioning -->
+        <div class="page" id="page15">
+            <div class="project-card">
+                <h2>Portfolio Positioning System</h2>
+
+                <div class="problem">
+                    <strong>Problem:</strong> Technical implementations don't translate to consulting opportunities. Executives need ROI narratives, not architecture diagrams.
+                </div>
+
+                <div class="solution">
+                    <strong>Solution:</strong> Research-backed positioning strategy converting technical achievements into business narratives. Following Discover → Decide → Deliver methodology. 10-20-70 communication rule (70% people/business, 20% process, 10% tech). Problem-Solution-Impact case study framework. Transferrable skills translation matrix. GenSpark AI Slides presentation prompts.
+                </div>
+
+                <h4>Deliverables (Phase 1 Complete):</h4>
+                <ul>
+                    <li><strong>Positioning Strategy</strong> (28KB) - Communication frameworks, ROI formulas, credibility signals</li>
+                    <li><strong>Project Inventory</strong> (45KB) - 12 projects with business context, skills mapping</li>
+                    <li><strong>GenSpark Prompts</strong> (33KB) - 5 presentation templates ready for generation</li>
+                    <li><strong>Technical Update</strong> - Colleague sync materials (MD + HTML flipbook)</li>
+                </ul>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">106K+</div>
+                        <div class="stat-label">Words of Positioning Content</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$400/hr</div>
+                        <div class="stat-label">Effective Rate (if 10% conversion lift)</div>
+                    </div>
+                </div>
+
+                <div class="human-impact">
+                    <h4>Human Impact (Technology × Process × Enablement):</h4>
+                    <p><strong>Technology:</strong> Reusable frameworks and GenSpark prompts accelerate proposal development<br>
+                    <strong>Process:</strong> 10-20-70 rule ensures executive resonance; reduces discovery call anxiety<br>
+                    <strong>Enablement:</strong> Translation matrix builds positioning confidence<br>
+                    <strong>Result:</strong> Makes it safe to position as consultant (not just implementer). Converts technical achievements into business narratives executives value.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 16: Technical Stack & Principles -->
+        <div class="page" id="page16">
+            <h2>Technical Stack & Principles</h2>
+
+            <h3>Core Stack</h3>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-label">Languages</div>
+                    <div style="font-size: 1.2em; margin-top: 10px;">Python 3.12+, Bash</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">AI/ML</div>
+                    <div style="font-size: 1.2em; margin-top: 10px;">Claude, Whisper, Ollama</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Infrastructure</div>
+                    <div style="font-size: 1.2em; margin-top: 10px;">WSL2, systemd, Docker</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Data</div>
+                    <div style="font-size: 1.2em; margin-top: 10px;">SQLite, PostgreSQL</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Architecture Philosophy</h3>
+            <p style="font-style: italic; color: #667eea; font-size: 1.2em; margin-bottom: 20px;">Guided by five core principles from consulting methodology:</p>
+
+            <div class="project-section">
+                <div class="human-impact">
+                    <p><strong>1. Make it safe to learn</strong> - Design systems that encourage experimentation without fear of breaking things</p>
+                    <p><strong>2. Default to clarity</strong> - Business-first technology decisions; every technical choice traces to business outcome</p>
+                    <p><strong>3. Measure what matters</strong> - Quantify outcomes that executives care about (time, cost, capacity)</p>
+                    <p><strong>4. Communicate early and often</strong> - Knowledge transfer built-in; stakeholder visibility throughout</p>
+                    <p><strong>5. Remove friction</strong> - Modern stack, proven tools; automation that reduces cognitive load</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px;">Common Patterns</h3>
+            <ul>
+                <li><strong>Queue-based processing:</strong> Decouple triggers from execution, enable retry logic</li>
+                <li><strong>Systemd automation:</strong> Background services, scheduled tasks, auto-restart on failure</li>
+                <li><strong>File-based triggers:</strong> inotify monitoring → event-driven processing</li>
+                <li><strong>Human-centered AI:</strong> Augment capability, not replace judgment; transparency builds trust</li>
+            </ul>
+        </div>
+
+        <!-- Page 17: Intersection Diagram -->
+        <div class="page" id="page17">
+            <h2>The Intersection: Where I Operate</h2>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <img src="assets/justenuf2b-intersection.png" alt="Technology × Process × Enablement Intersection" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            </div>
+
+            <div class="human-impact">
+                <p style="font-size: 1.2em; text-align: center;">
+                    <strong>Operating Model:</strong> Technology × Process × Enablement with <strong style="color: #667eea;">Humans at the Center</strong>
+                </p>
+                <p style="text-align: center; margin-top: 20px;">
+                    Every project demonstrates this intersection through measurable human impact: time freed, stress reduced, capability increased, trust earned.
+                </p>
+            </div>
+        </div>
+
+        <!-- Page 18: Clarity & Human Integration -->
+        <div class="page" id="page18">
+            <h2>Clarity & Human Integration</h2>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <img src="assets/justenuf2b-clarity-human-integrated.png" alt="Clarity and Human-Centered Integration" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+            </div>
+
+            <div class="human-impact">
+                <h4>Core Principles in Action:</h4>
+                <p><strong>Default to Clarity</strong> - Business-first technology decisions; every technical choice traces to business outcome</p>
+                <p><strong>Make it Safe to Learn</strong> - Systems that encourage experimentation without fear</p>
+                <p><strong>Remove Friction</strong> - Automation that reduces cognitive load, not adds complexity</p>
+                <p style="text-align: center; margin-top: 30px; font-style: italic; color: #667eea;">
+                    Transformation happens when people feel secure enough to learn and empowered to use technology well.
+                </p>
+            </div>
+        </div>
+
+        <!-- Page 19: Questions & Resources -->
+        <div class="page" id="page19">
+            <h2>Questions for Sync Session</h2>
+
+            <div class="human-impact" style="margin-bottom: 30px;">
+                <h4>Your State of AI Learning</h4>
+                <ol>
+                    <li>What areas are you focusing on? (LLMs, agents, specific frameworks?)</li>
+                    <li>Any interesting architectural patterns or tools you've discovered?</li>
+                    <li>Challenges you've encountered that might overlap with my work?</li>
+                </ol>
+            </div>
+
+            <div class="human-impact" style="margin-bottom: 30px;">
+                <h4>Technical Collaboration</h4>
+                <ol>
+                    <li>Areas where our projects might intersect or inform each other?</li>
+                    <li>Tools/frameworks I should be evaluating that I'm not currently using?</li>
+                    <li>Any gaps in my technical approach based on what you're seeing?</li>
+                </ol>
+            </div>
+
+            <div class="human-impact" style="margin-bottom: 40px;">
+                <h4>AI Landscape</h4>
+                <ol>
+                    <li>What should I know about AI developments relevant to consulting work?</li>
+                    <li>Trends in AI adoption patterns (what's working, what's hype)?</li>
+                    <li>Governance/responsible AI frameworks gaining traction?</li>
+                </ol>
+            </div>
+
+            <h2>Resources</h2>
+            <div class="project-section">
+                <p><strong>GitHub:</strong> <a href="https://github.com/justenuf2b" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">github.com/justenuf2b</a></p>
+                <p><strong>Website:</strong> <a href="https://meet.justenuf2b.com" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">meet.justenuf2b.com</a> (philosophy, services, methodology)</p>
+                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ryanbahrey" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">linkedin.com/in/ryanbahrey</a> (thought leadership, human-centered AI)</p>
+            </div>
+
+            <div class="page-footer">
+                Looking forward to learning about what you've been working on!
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-button" id="prevBtn" onclick="changePage(-1)">← Previous</button>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                <div class="page-indicator">
+                    <span id="currentPage">1</span> / <span id="totalPages">17</span>
+                </div>
+                <div class="page-dots" id="pageDots"></div>
+            </div>
+            <button class="nav-button" id="nextBtn" onclick="changePage(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 19;
+
+        function showPage(pageNum) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            document.getElementById('page' + pageNum).classList.add('active');
+            document.getElementById('currentPage').textContent = pageNum;
+
+            document.getElementById('prevBtn').disabled = pageNum === 1;
+            document.getElementById('nextBtn').disabled = pageNum === totalPages;
+
+            updateDots();
+
+            document.querySelector('.flipbook-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+            showPage(currentPage);
+        }
+
+        function goToPage(pageNum) {
+            currentPage = pageNum;
+            showPage(currentPage);
+        }
+
+        function updateDots() {
+            const dotsContainer = document.getElementById('pageDots');
+            dotsContainer.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                if (i === currentPage) {
+                    dot.classList.add('active');
+                }
+                dot.onclick = () => goToPage(i);
+                dot.title = `Page ${i}`;
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft' && currentPage > 1) {
+                changePage(-1);
+            } else if (e.key === 'ArrowRight' && currentPage < totalPages) {
+                changePage(1);
+            }
+        });
+
+        document.getElementById('totalPages').textContent = totalPages;
+        updateDots();
+        showPage(1);
+    </script>
+</body>
+</html>
